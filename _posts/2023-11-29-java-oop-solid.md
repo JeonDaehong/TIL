@@ -1,5 +1,5 @@
 ---
-title: Java : OOP and SOLID
+title: Java - OOP and SOLID
 author: Daehong
 date: 2023-11-29
 category: Jekyll
