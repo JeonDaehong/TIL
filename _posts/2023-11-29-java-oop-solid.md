@@ -216,12 +216,255 @@ mermaid: true
 
 <br>
 #### 3. 리스코프 치환 원칙 ( LSP : Liskov Substitution Principle )
+- 자식 클래스는 최소한 자신의 부모 클래스에서 가능한 행위는 수행이 보장되어야 한다는 의미이다.
+- 따라서 기본적으로 LSP 원칙은 부모 메서드의 오버라이딩을 조심스럽게 따져가며 해야한다.
+- 왜냐하면 부모 클래스와 동일한 수준의 선행 조건을 기대하고 사용하는 프로그램 코드에서 예상치 못한 문제를 일으킬 수 있기 때문이다.
+- 아래는 예시코드이다.
+	```java
+	public class Rectangle {
+		protected double width;
+		protected double height;
+
+		public double getWidth() {
+			return width;
+		}
+
+		public void setWidth(final double width) {
+			this.width = width;
+		}
+
+		public double getHeight() {
+			return height;
+		}
+
+		public void setHeight(final double height) {
+			this.height = height;
+		}
+
+		public double getArea() {
+			return width * height;
+		}
+	}
+	
+	public class Square extends Rectangle {
+		@Override
+		public void setWidth(final double width) {
+			this.height = width;
+			this.width = width;
+		}
+
+		@Override
+		public void setHeight(final double height) {
+			this.height = height;
+			this.width = height;
+		}
+	}
+	```
+- 이렇게 정사각형이 직사각형 클래스를 상속 받고, 메서드를 저렇게 오버라이딩을 하면
+	```java
+	class SquareTest {
+		@Test
+		void 직사각형이_제대로_넓이를_구하는지_테스트() {
+			/* Given */
+			Rectangle rectangle = new Rectangle();
+			/* When */
+			rectangle.setHeight(4);
+			rectangle.setWidth(5);
+			/* Then */
+			assertThat(rectangle.getArea()).isEqualTo(20);
+		}
+
+		@Test
+		void 정사각형이_제대로_넓이를_구하는지_테스트() {
+			/* Given */
+			Rectangle rectangle = new Square();
+			/* When */
+			rectangle.setHeight(4);
+			rectangle.setWidth(5);
+			/* Then */
+			assertThat(rectangle.getArea()).isEqualTo(20);
+		}
+	}
+```
+- 이렇게 테스트를 해주었을 때 올바른 값이 출력되지 않는다.
+- 즉, 메서드를 재정의 할 때는 자식 클래스가 부모 클래스의 역할을 최소한 할 수 있는지를 확인해가며 확장을 해주어야 한다.
 
 <br>
 #### 4. 인터페이스 분리 원칙 ( ISP : Interface Segregation Principle )
+- ISP 원칙은 인터페이스를 각각 사용에 맞게 끔 잘게 분리해야한다는 설계 원칙이다.
+- SRP 원칙이 클래스의 단일 책임을 강조한다면, ISP는 인터페이스의 단일 책임을 강조하는 것으로 보면 된다.
+- 만약 인터페이스의 추상 메서드들을 범용적으로 이것저것 구현한다면, 그 인터페이스를 상속받은 클래스는 자신이 사용하지 않는 인터페이스마저 억지로 구현 해야 하는 상황이 올 수도 있다.
+- 인터페이스는 제약 없이 자유롭게 다중 상속(구현)이 가능하기 때문에, 분리할 수 있으면 분리하여 각 클래스 용도에 맞게 implements 하라는 설계 원칙이라고 이해하면 된다
+	```java
+	interface ISmartPhone {
+		void call(String number); // 통화 기능
+		void message(String number, String text); // 문제 메세지 전송 기능
+	}
+
+	interface WirelessChargable {
+		void wirelessCharge(); // 무선 충전 기능
+	}
+
+	interface ARable {
+		void AR(); // 증강 현실(AR) 기능
+	}
+
+	interface Biometricsable {
+		void biometrics(); // 생체 인식 기능	
+	}
+	
+	
+	class S21 implements ISmartPhone, WirelessChargable, ARable, Biometricsable {
+		public void call(String number) {
+		}
+
+		public void message(String number, String text) {
+		}
+
+		public void wirelessCharge() {
+		}
+
+		public void AR() {
+		}
+
+		public void biometrics() {
+		}
+	}
+
+	class S3 implements ISmartPhone {
+		public void call(String number) {
+		}
+
+		public void message(String number, String text) {
+		}
+	}
+	
+	```
+- 이렇게 구현하는 방식이 ISP를 올바르게 지킨 방식이다. 만약 저기에서 S3에 불필요한 메서드가 들어가서 억지로 구현하게끔 implements를 하였다면 그건 ISP를 위반한 것이 된다.
+
 
 <br>
 #### 5. 의존 역전 원칙 ( DIP : Dependency Inversion Principle )
-	
+- 어떤 Class를 참조해서 사용해야하는 상황이 생긴다면, 그 Class를 직접 참조하는 것이 아니라 그 대상의 상위 요소(추상 클래스 or 인터페이스)로 참조하라는 원칙이다.
+- 다시 말하면 클라이언트(사용자)가 상속 관계로 이루어진 모듈을 가져다 사용할때, 하위 모듈을 직접 인스턴스를 가져다 쓰지 말라는 뜻이다. 왜냐하면 그렇게 할 경우, 하위 모듈의 구체적인 내용에 클라이언트가 의존하게 되어 하위 모듈에 변화가 있을 때마다 클라이언트나 상위 모듈의 코드를 자주 수정해야 되기 때문이다.
+- 따라서 한마디로 상위의 인터페이스 타입의 객체로 통신하라는 원칙이다.
+- 우리가 Spring에서 개발을 할 때도 중요한 부분이다.
+- 아래 코드는 DIP 원칙을 준수하지 않아서 생기는 문제이다.
+	```java
+	class OneHandSword {
+		final String NAME;
+		final int DAMAGE;
 
+		OneHandSword(String name, int damage) {
+			NAME = name;
+			DAMAGE = damage;
+		}
+
+		int attack() {
+			return DAMAGE;
+		}
+	}
+
+	class TwoHandSword {
+		// ...
+	}
+
+	class BatteAxe {
+		// ...
+	}
+
+	class WarHammer {
+		// ...
+	}
+
+	class Character {
+		final String NAME;
+		int health;
+		OneHandSword weapon; // 의존 저수준 객체
+
+		Character(String name, int health, OneHandSword weapon) {
+			this.NAME = name;
+			this.health = health;
+			this.weapon = weapon;
+		}
+
+		int attack() {
+			return weapon.attack(); // 의존 객체에서 메서드를 실행
+		}
+
+		void chageWeapon(OneHandSword weapon) {
+			this.weapon = weapon;
+		}
+
+		void getInfo() {
+			System.out.println("이름: " + NAME);
+			System.out.println("체력: " + health);
+			System.out.println("무기: " + weapon);
+		}
+	}
+	```
+- 이렇게 OneHandSword weapon; 으로 의존해버리면, 다른 무기를 쓰고 싶을 때 수정하는 것이 어려워진다.
+- 그래서 가장 상위 인터페이스를 하나 추가하고, 아래 코드처럼 만들면 된다.
+	```java
+	interface Weaponable {
+		int attack();
+	}
+
+	class OneHandSword implements Weaponable {
+		final String NAME;
+		final int DAMAGE;
+
+		OneHandSword(String name, int damage) {
+			NAME = name;
+			DAMAGE = damage;
+		}
+
+		public int attack() {
+			return DAMAGE;
+		}
+	}
+
+	class TwoHandSword implements Weaponable {
+		// ...
+	}
+
+
+	class BatteAxe implements Weaponable {
+		// ...
+	}
+
+	class WarHammer implements Weaponable {
+		// ...
+	}
+
+	이 상태에서
+
+	class Character {
+		final String NAME;
+		int health;
+		Weaponable weapon; // 의존을 고수준의 모듈로
+
+		Character(String name, int health, Weaponable weapon) {
+			this.NAME = name;
+			this.health = health;
+			this.weapon = weapon;
+		}
+
+		int attack() {
+			return weapon.attack();
+		}
+
+		void chageWeapon(Weaponable weapon) {
+			this.weapon = weapon;
+		}
+
+		void getInfo() {
+			System.out.println("이름: " + NAME);
+			System.out.println("체력: " + health);
+			System.out.println("무기: " + weapon);
+		}
+	}
+	```
+- 최상위 인터페이스인 Weaponable을 받아오는 것이다.
+- 이러면 무기 변경도 수월하고, 무기 확장도 수월해서 OCP 원칙도 지키게 된 셈이다. 이것이 DIP 원칙이다.
 
