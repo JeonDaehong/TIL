@@ -52,7 +52,9 @@ mermaid: true
 #### 2. 추상화
 - 핵심적인 개념과 기능만 추려내어 클래스를 만들고, 자식 클래스들이 상속을 받아 구현하도록 하는 특징
 - 공통된 변수나 공통된 기능을 묶을 수 있어 중복된 코드를 만들지 않아도 됨.
-   자바에 추상클래스와 인터페이스가 존재하는 이유.
+- 자바에 추상클래스와 인터페이스가 존재하는 이유.
+- 보통 우리는 추상화라는 개념에 대해 '구체적이지 않은' 정도의 의미로 느슨하게 알고만 있다. 하지만 '그래디 부치(Grady Booch)'에 의하면 '추상화란 다른 모든 종류의 객체로부터 식별될 수 있는 객체의 본질적인 특징'이라고 정의한다.
+- 즉, 추상 메서드 설계에서 적당한 추상화 레벨을 선택함으로써, 어떠한 행위에 대한 본질적인 정의를 서브 클래스에 전파함으로써 관계를 성립되게 하는 것이다.
 	
 <br>	
 
@@ -111,6 +113,106 @@ mermaid: true
 
 <br>
 #### 2. 개방 폐쇄의 원칙 ( OCP : Open/Closed Principle )
+- 확장에는 열려(Open) 있으나, 변경에는 닫혀(Closed)있어야 한다.
+- 즉, 기존 코드를 변경하지 않으면서 기능을 추가할 수 있게 해줘야 한다.
+- 한마디로 추상화 사용을 통한 관계 구축을 권장하는 것을 의미한다.
+```java
+class Animal {
+	String type;
+    
+    Animal(String type) {
+    	this.type = type;
+    }
+}
+
+// 동물 타입을 받아 각 동물에 맞춰 울음소리를 내게 하는 클래스 모듈
+class HelloAnimal {
+    void hello(Animal animal) {
+        if(animal.type.equals("Cat")) {
+            System.out.println("냐옹");
+        } else if(animal.type.equals("Dog")) {
+            System.out.println("멍멍");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        HelloAnimal hello = new HelloAnimal();
+        
+        Animal cat = new Animal("Cat");
+        Animal dog = new Animal("Dog");
+
+        hello.hello(cat); // 냐옹
+        hello.hello(dog); // 멍멍
+    }
+}
+```
+- 해당 코드는 OCP 원칙을 위반한다. 왜냐하면, 여기서 새로운 동물의 울음소리를 추가하려면...
+```java
+class HelloAnimal {
+	// 기능을 확장하기 위해서는 클래스 내부 구성을 일일히 수정해야 하는 번거로움이 생긴다.
+    void hello(Animal animal) {
+        if (animal.type.equals("Cat")) {
+            System.out.println("냐옹");
+        } else if (animal.type.equals("Dog")) {
+            System.out.println("멍멍");
+        } else if (animal.type.equals("Sheep")) {
+            System.out.println("메에에");
+        } else if (animal.type.equals("Lion")) {
+            System.out.println("어흥");
+        }
+        // ...
+    }
+}
+```
+- 이렇게 클래스를 수정해야 할 수 밖에 없게 설계하였기 때문이다. 이러면 OCP를 위반하는 것이다.
+- 하지만 아래와 같이 코드를 작성하면 OCP를 위반하지 않는다.
+```java
+// 추상화
+abstract class Animal {
+    abstract void speak();
+}
+
+class Cat extends Animal { // 상속
+    void speak() {
+        System.out.println("냐옹");
+    }
+}
+
+class Dog extends Animal { // 상속
+    void speak() {
+        System.out.println("멍멍");
+    }
+}
+
+class HelloAnimal {
+    void hello(Animal animal) {
+        animal.speak();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        HelloAnimal hello = new HelloAnimal();
+
+        Animal cat = new Cat();
+        Animal dog = new Dog();
+
+        hello.hello(cat); // 냐옹
+        hello.hello(dog); // 멍멍
+    }
+}
+```
+- 이러면 동물 울음소리를 추가하고 싶을 때, 아래와 같은 클래스만 새로 생성하면 될 뿐 클래스를 수정할 필요가 없다.
+```java
+class Lion extends Animal {
+    void speak() {
+        System.out.println("어흥");
+    }
+}
+```
+
 
 <br>
 #### 3. 리스코프 치환 원칙 ( LSP : Liskov Substitution Principle )
