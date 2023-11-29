@@ -17,7 +17,7 @@ permalink: /
 
 ### Java
 
-- #### [Java](/_posts/2023-11-23-java-study.md)
+- #### [Java](/_posts/2023-11-29-java-study.md)
 
   - 객체지향의 특징
 
