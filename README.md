@@ -14,9 +14,7 @@ permalink: /
 ## Table of Contents
 ### Java
 
-- #### [Java](/_posts/2023-11-29-java-study.md)
-
-  - [객체지향의 특징](/_posts/study-java/2023-11-29-object-oriented.md)
+- #### [Java Basic](/_posts/2023-11-29-java-basic.md)
 
 
 <br>
