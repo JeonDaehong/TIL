@@ -36,9 +36,11 @@ mermaid: true
    - **단점** : 
 		- 절차지향 언어를 사용하는 것보다 코드 난이도가 높음
         - 절차지향 언어에 비해 실행 속도가 느림.	   
+		
 <br>
 <br>
 <br>
+
 ### OOP의 특징
 ------------
 #### 1. 캡슐화 : 
@@ -61,12 +63,26 @@ mermaid: true
 	- 같은 이름의 함수가 구현체에 따라 다르게 동작하는 것.
 	- 우리가 같은 Discount라는 인터페이스에 RateDiscount라는 구체 클래스로 생성하느냐, FixDiscount라는 구체 클래스로 생성하느냐에 따라 같은 이름의 메서드더라도 다른 기능을 함.
 	- 오버로딩, 오버라이딩이 해당 됨.
+	
 <br>
 <br>
 <br>
+
 ### 객체지향의 5원칙 SOLID
 ---------------------
+#### 1. 단일 책임 원칙 ( SRP : Single Responsibility Principle )
 
+<br>
+#### 2. 개방 폐쇄의 원칙 ( OCP : Open/Closed Principle )
+
+<br>
+#### 3. 리스코프 치환 원칙 ( LSP : Liskov Substitution Principle )
+
+<br>
+#### 4. 인터페이스 분리 원칙 ( ISP : Interface Segregation Principle )
+
+<br>
+#### 5. 의존 역전 원칙 ( DIP : Dependency Inversion Principle )
 	
 
 
