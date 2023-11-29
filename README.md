@@ -17,6 +17,7 @@ We studied and organized a variety of topics, from basic to advanced.
 ### Java
 
 - #### [OOP and SOLID](/_posts/2023-11-29-java-oop-solid.md)
+- #### [Multithread synchronization issues](/_posts/2023-11-29-java-multi-issues.md)
 
 
 <br>

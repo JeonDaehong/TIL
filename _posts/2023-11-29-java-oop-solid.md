@@ -437,8 +437,6 @@ mermaid: true
 		// ...
 	}
 
-	이 상태에서
-
 	class Character {
 		final String NAME;
 		int health;
@@ -468,3 +466,8 @@ mermaid: true
 - 최상위 인터페이스인 Weaponable을 받아오는 것이다.
 - 이러면 무기 변경도 수월하고, 무기 확장도 수월해서 OCP 원칙도 지키게 된 셈이다. 이것이 DIP 원칙이다.
 
+<br>
+<br>
+<br>
+<br>
+<br>
