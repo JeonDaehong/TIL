@@ -18,6 +18,7 @@ We studied and organized a variety of topics, from basic to advanced.
 
 - #### [OOP and SOLID](/_posts/2023-11-29-java-oop-solid.md)
 - #### [Multithread Synchronization Issues Basic](/_posts/2023-11-29-java-multi-issues.md)
+- #### [Assignment vs Equality vs Equals](/_posts/2023-11-29-java-equality.md)
 
 
 <br>
