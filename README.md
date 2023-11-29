@@ -12,9 +12,11 @@ permalink: /
 <br>
 
 ## Table of Contents
+This is a page that I reviewed and organized after studying Java on my own.
+We studied and organized a variety of topics, from basic to advanced.
 ### Java
 
-- #### [Java Basic](/_posts/2023-11-29-java-basic.md)
+- #### [OOP and SOLID](/_posts/2023-11-29-java-oop-solid.md)
 
 
 <br>
