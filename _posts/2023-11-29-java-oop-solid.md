@@ -75,6 +75,39 @@ mermaid: true
 
 ### 객체지향의 5원칙 SOLID
 #### 1. 단일 책임 원칙 ( SRP : Single Responsibility Principle )
+	* 하나의 클래스는 하나의 책임만 가져야 한다.
+	```java
+	public class Animal {
+		private String animal;
+		public void bark() {
+			if ( animal.equals(“Dog”) ) {
+				System.out.println(“Bark !”);
+			} else if ( animal.equals(“Cat”) ) {
+				System.out.println(“Meow ...”);
+			}
+		}
+	}
+	```
+	* 해당 코드는 Dog와 Cat 두 가지 책임을 가지고 있기 때문에 SRP 원칙에 위반한다.
+	* 수정을 하면
+	```java
+	abstract class Animal {
+		abstract void bark();
+	}
+	class Dog extends Animal {
+		@Override
+		void bark() {
+			System.out.println(“Bark !”);
+		}
+	}
+	class Cat extends Animal {
+		@Override
+		void bark() {
+			System.out.println(“Meow ...”);
+		}
+	}
+	```
+	* 이렇게 하나의 클래스는 하나의 책임만 갖게끔 설계하는 것이 SRP 특징을 잘 살려 설계하는 것이다.
 
 <br>
 #### 2. 개방 폐쇄의 원칙 ( OCP : Open/Closed Principle )
