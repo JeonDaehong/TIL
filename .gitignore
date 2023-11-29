@@ -1,2 +1,3 @@
-in-progres
-.DS_Store
+_site/
+_draft/
+.jekyll-cache/
