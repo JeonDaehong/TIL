@@ -10,6 +10,8 @@ mermaid: true
 * 이건 한글로 번역하면, 할당 vs 동일 vs 동등이다.
 
 <br>
+<hr>
+
 ### 할당 ( Assignment, = )
 * 할당은 int a = 10; 이렇게 a라는 변수에 10을 주는 것을 할당이라고 하고, 영어로는 Assignment 라고 한다.
 * = 으로 할당한다.
