@@ -45,6 +45,10 @@ permalink: /
 - #### [IoC Container & DI Container](/_posts/2023-11-29-spring-2.md)
 
 <br>
+### CS
+- #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
+
+<br>
 <br>
 <br>
 <br>
