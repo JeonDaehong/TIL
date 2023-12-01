@@ -23,6 +23,8 @@ permalink: /
 - #### [Multithread Synchronization Issues Basic](/_posts/2023-11-29-java-2.md)
 - #### [Assignment vs Equality vs Equals](/_posts/2023-11-29-java-3.md)
 - #### [Primitive vs Wrapper](/_posts/2023-11-29-java-4.md)
+- #### [Abstract Class vs Interface](/_posts/2023-11-29-java-5.md)
+
 
 
 <br>
