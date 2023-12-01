@@ -15,6 +15,7 @@ permalink: /
 **이것은 추후 저의 큰 자산이 될 것이며, 개발을 공부하는 다른 사람들에게도 큰 도움이 될 것입니다.**
 
 <br>
+
 ## TIL List
 
 ### Algorithm
@@ -23,6 +24,7 @@ permalink: /
 - #### [Array CodingTest Tip](/_posts/2023-11-29-algorithm-3.md)
 
 <br>
+
 ### Java
 - #### [Java Basic JDK, JRE, JVM & JVM WarmUp](/_posts/2023-11-29-java-16.md)
 - #### [OOP and SOLID](/_posts/2023-11-29-java-1.md)
@@ -49,17 +51,20 @@ permalink: /
 
 
 <br>
+
 ### Spring
 - #### [IoC & DI](/_posts/2023-11-29-spring-1.md)
 - #### [IoC Container & DI Container](/_posts/2023-11-29-spring-2.md)
 
 <br>
+
 ### Git & Github
 - #### [Git & Github Basic](/_posts/2023-11-29-git-1.md)
 - #### [Git Rollback](/_posts/2023-11-29-git-2.md)
 - #### [Branch & Interaction](/_posts/2023-11-29-git-3.md)
 
 <br>
+
 ### CS
 - #### [Why computers use binary numbers](/_posts/2023-11-29-cs-3.md)
 - #### [Interrupt](/_posts/2023-11-29-cs-4.md)
