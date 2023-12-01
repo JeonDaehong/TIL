@@ -72,9 +72,9 @@ permalink: /
 <hr>
 
 **Daehong TIL Blog**
-* Git : https://github.com/JeonDaehong
-* Curriculum Vitae : https://daehong770.oopy.io/
-* Another Blog (Develop Blog) : https://development-my-link.tistory.com/
+[Git](https://github.com/JeonDaehong)
+[Curriculum Vitae](https://daehong770.oopy.io/)
+[Another Blog (Develop Blog)](https://development-my-link.tistory.com/)
 
 <br>
 <br>
