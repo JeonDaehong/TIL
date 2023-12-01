@@ -34,7 +34,12 @@ permalink: /
 - #### [Immutable Class vs Mutable Class](/_posts/2023-11-29-java-13.md)
 - #### [Operators, TypeConversion, and MemoryOverflow](/_posts/2023-11-29-java-14.md)
 - #### [String](/_posts/2023-11-29-java-15.md)
+- #### [Libraries vs Frameworks](/_posts/2023-11-29-java-18.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
+
+<br>
+### Spring
+- #### [IoC & DI](/_posts/2023-11-29-spring-1.md)
 
 <br>
 <br>
