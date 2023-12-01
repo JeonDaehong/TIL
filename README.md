@@ -20,6 +20,7 @@ permalink: /
 ### Algorithm
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Tip](/_posts/2023-11-29-algorithm-2.md)
+- #### [Array CodingTest Tip](/_posts/2023-11-29-algorithm-3.md)
 
 <br>
 ### Java
