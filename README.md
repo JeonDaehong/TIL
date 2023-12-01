@@ -32,6 +32,7 @@ permalink: /
 - #### [Short Circuit vs Eager Operator](/_posts/2023-11-29-java-11.md)
 - #### [Static ?](/_posts/2023-11-29-java-12.md)
 - #### [Immutable Class vs Mutable Class](/_posts/2023-11-29-java-13.md)
+- #### [IOperators, TypeConversion, and MemoryOverflow](/_posts/2023-11-29-java-14.md)
 
 
 <br>
