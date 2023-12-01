@@ -4,16 +4,18 @@ title: Daehong TIL Blog
 permalink: /
 ---
 
-# 👨🏻‍💻 Today I Learned
+# 👨🏻‍💻 하루에 한 걸음씩 꾸준히 나아가는 개발자
 
-> We constantly learn new things. This is a repo to share those learnings.
+> 기초를 중요시하며, 꾸준하고 성실하게 공부하는 것을 선호합니다. 이 블로그는 제가 매일매일 공부한 발자취를 남기는 공간이며, 추후 복습하고자 할 때 다시 보기도하고, 다른 사람들에게도 도움이 되고자 정리하였습니다.
 
 <br>
 <br>
 
-## Table of Contents
-This is a page that I reviewed and organized after studying Java on my own.
-We studied and organized a variety of topics, from basic to advanced.
+## TIL
+Today I Learned : 오늘 내가 배운 것들을 정리합니다.
+Java부터 CS까지 배운건 빠짐없이 정리하였고, 기술별로 나눴습니다.
+이것은 추후 저의 큰 자산이 될 겁니다.
+
 ### Java
 
 - #### [OOP and SOLID](/_posts/2023-11-29-java-oop-solid.md)
@@ -23,25 +25,8 @@ We studied and organized a variety of topics, from basic to advanced.
 
 <br>
 <br>
-<hr>
-
-## License
-
-This work is open sourced under the Apache License, Version 2.0.
-
-Copyright 2019 Tao He.
-
-[1]: https://pages.github.com
-[2]: https://pages.github.com/themes
-[3]: https://github.com/sighingnow/jekyll-gitbook/fork
-[4]: https://github.com/allejo/jekyll-toc
-[5]: https://github.com/gitbook-plugins/gitbook-plugin-search-pro
-[6]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
-[7]: https://analytics.google.com/analytics/web/
-[8]: https://www.cnzz.com/
-[9]: https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
-[10]: https://github.com/sighingnow/jekyll-gitbook/blob/master/gitbook/custom.css
-[11]: https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas
-[12]: https://rubygems.org/gems/jekyll-remote-theme
-[13]: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
-[14]: https://github.com/sighingnow/jekyll-gitbook/blob/master/_config.yml
+<br>
+<br>
+<br>
+<br>
+<br>
