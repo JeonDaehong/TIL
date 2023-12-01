@@ -29,6 +29,7 @@ permalink: /
 - #### [7 features of Java](/_posts/2023-11-29-java-8.md)
 - #### [Classes, Objects and Instances](/_posts/2023-11-29-java-9.md)
 - #### [Error in Floating Point](/_posts/2023-11-29-java-10.md)
+- #### [Short Circuit vs Eager Operator](/_posts/2023-11-29-java-11.md)
 
 
 
