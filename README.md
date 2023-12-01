@@ -26,6 +26,7 @@ permalink: /
 - #### [Abstract Class vs Interface](/_posts/2023-11-29-java-5.md)
 - #### [Equals & HashCode](/_posts/2023-11-29-java-6.md)
 - #### [Call By Value vs Call By Reference](/_posts/2023-11-29-java-7.md)
+- #### [7 features of Java](/_posts/2023-11-29-java-8.md)
 
 
 
