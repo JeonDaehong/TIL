@@ -19,6 +19,7 @@ permalink: /
 
 ### Algorithm
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
+- #### [String CodingTest Tip](/_posts/2023-11-29-algorithm-2.md)
 
 <br>
 ### Java
@@ -65,6 +66,16 @@ permalink: /
 <br>
 <br>
 <br>
+<br>
+<br>
+
+<hr>
+
+**Daehong TIL Blog**
+* Git : https://github.com/JeonDaehong
+* Curriculum Vitae : https://daehong770.oopy.io/
+* Another Blog (Develop Blog) : https://development-my-link.tistory.com/
+
 <br>
 <br>
 <br>
