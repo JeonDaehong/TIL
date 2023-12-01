@@ -31,7 +31,7 @@ permalink: /
 - #### [Error in Floating Point](/_posts/2023-11-29-java-10.md)
 - #### [Short Circuit vs Eager Operator](/_posts/2023-11-29-java-11.md)
 - #### [Static ?](/_posts/2023-11-29-java-12.md)
-
+- #### [Immutable Class vs Mutable Class](/_posts/2023-11-29-java-13.md)
 
 
 <br>
