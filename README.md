@@ -50,6 +50,7 @@ permalink: /
 <br>
 ### CS
 - #### [Why computers use binary numbers](/_posts/2023-11-29-cs-3.md)
+- #### [Interrupt](/_posts/2023-11-29-cs-4.md)
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 
