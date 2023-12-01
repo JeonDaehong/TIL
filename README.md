@@ -55,7 +55,9 @@ permalink: /
 
 <br>
 ### Git & Github
-- #### [Git Basic](/_posts/2023-11-29-git-1.md)
+- #### [Git & Github Basic](/_posts/2023-11-29-git-1.md)
+- #### [Git Rollback](/_posts/2023-11-29-git-2.md)
+- #### [Branch & Interaction](/_posts/2023-11-29-git-3.md)
 
 <br>
 ### CS
