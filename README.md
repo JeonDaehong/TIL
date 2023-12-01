@@ -47,6 +47,7 @@ permalink: /
 <br>
 ### CS
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
+- #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 
 <br>
 <br>
