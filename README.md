@@ -18,7 +18,7 @@ permalink: /
 ## TIL List
 
 ### Java
-
+- #### [Java Basic JDK, JRE, JVM](/_posts/2023-11-29-java-16.md)
 - #### [OOP and SOLID](/_posts/2023-11-29-java-1.md)
 - #### [Multithread Synchronization Issues Basic](/_posts/2023-11-29-java-2.md)
 - #### [Assignment vs Equality vs Equals](/_posts/2023-11-29-java-3.md)
