@@ -53,10 +53,17 @@ permalink: /
 - #### [Interrupt](/_posts/2023-11-29-cs-4.md)
 - #### [Ram vs Disk and Cache](/_posts/2023-11-29-cs-5.md)
 - #### [System Bus](/_posts/2023-11-29-cs-6.md)
+- #### [File writing process in Java (OS, interrupt, I/O perspective)](/_posts/2023-11-29-cs-7.md)
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
