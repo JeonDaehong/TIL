@@ -17,6 +17,10 @@ permalink: /
 <br>
 ## TIL List
 
+### Algorithm
+- #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
+
+<br>
 ### Java
 - #### [Java Basic JDK, JRE, JVM & JVM WarmUp](/_posts/2023-11-29-java-16.md)
 - #### [OOP and SOLID](/_posts/2023-11-29-java-1.md)
