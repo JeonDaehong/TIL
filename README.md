@@ -27,6 +27,8 @@ permalink: /
 - #### [Equals & HashCode](/_posts/2023-11-29-java-6.md)
 - #### [Call By Value vs Call By Reference](/_posts/2023-11-29-java-7.md)
 - #### [7 features of Java](/_posts/2023-11-29-java-8.md)
+- #### [Classes, Objects and Instances](/_posts/2023-11-29-java-9.md)
+- #### [Error in Floating Point](/_posts/2023-11-29-java-10.md)
 
 
 
