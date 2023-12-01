@@ -36,6 +36,7 @@ permalink: /
 - #### [String](/_posts/2023-11-29-java-15.md)
 - #### [Libraries vs Frameworks](/_posts/2023-11-29-java-18.md)
 - #### [Final Keyword](/_posts/2023-11-29-java-19.md)
+- #### [Method Dispatch](/_posts/2023-11-29-java-20.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 <br>
