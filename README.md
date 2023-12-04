@@ -28,6 +28,7 @@ permalink: /
 
 ### Java
 - #### [Java Basic JDK, JRE, JVM & JVM WarmUp](/_posts/2023-11-29-java-16.md)
+- #### [Java Version](/_posts/2023-11-29-java-25.md)
 - #### [OOP and SOLID](/_posts/2023-11-29-java-1.md)
 - #### [Multithread Synchronization Issues Basic](/_posts/2023-11-29-java-2.md)
 - #### [Assignment vs Equality vs Equals](/_posts/2023-11-29-java-3.md)
@@ -50,7 +51,7 @@ permalink: /
 - #### [Exception](/_posts/2023-11-29-java-22.md)
 - #### [Collection Basic & Hash Basic](/_posts/2023-11-29-java-23.md)
 - #### [Annotation](/_posts/2023-11-29-java-24.md)
-- #### [Java Version](/_posts/2023-11-29-java-25.md)
+- #### [Generic](/_posts/2023-11-29-java-26.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
