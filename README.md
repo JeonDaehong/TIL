@@ -64,7 +64,9 @@ permalink: /
 - #### [Why use springs?](/_posts/2023-11-29-spring-3.md)
 - #### [IoC & DI](/_posts/2023-11-29-spring-1.md)
 - #### [IoC Container & DI Container](/_posts/2023-11-29-spring-2.md)
-- #### [Autowired ](/_posts/2023-11-29-spring-5.md)
+- #### [Spring Bean](/_posts/2023-11-29-spring-7.md)
+- #### [Autowired](/_posts/2023-11-29-spring-5.md)
+- #### [Quilifier vs Primary](/_posts/2023-11-29-spring-6.md)
 - #### [Spring Etc Study](/_posts/2023-11-29-spring-4.md)
 
 <br>
