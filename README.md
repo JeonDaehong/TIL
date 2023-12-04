@@ -54,6 +54,7 @@ permalink: /
 - #### [Generic](/_posts/2023-11-29-java-26.md)
 - #### [Garbage Collection](/_posts/2023-11-29-java-27.md)
 - #### [Shallow Copy vs Deep Copy](/_posts/2023-11-29-java-28.md)
+- #### [Daemon Thread](/_posts/2023-11-29-java-29.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
