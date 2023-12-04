@@ -48,6 +48,7 @@ permalink: /
 - #### [Method Dispatch](/_posts/2023-11-29-java-20.md)
 - #### [Inner Class](/_posts/2023-11-29-java-21.md)
 - #### [Exception](/_posts/2023-11-29-java-22.md)
+- #### [Collection Basic & Hash Basic](/_posts/2023-11-29-java-23.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
@@ -56,6 +57,12 @@ permalink: /
 ### Spring
 - #### [IoC & DI](/_posts/2023-11-29-spring-1.md)
 - #### [IoC Container & DI Container](/_posts/2023-11-29-spring-2.md)
+
+<br>
+
+### Redis
+- #### [Redis Development Tips 1](/_posts/2023-11-29-redis-1.md)
+
 
 <br>
 
