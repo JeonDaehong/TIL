@@ -60,12 +60,6 @@ permalink: /
 
 <br>
 
-### Redis
-- #### [Redis Development Tips 1](/_posts/2023-11-29-redis-1.md)
-
-
-<br>
-
 ### Git & Github
 - #### [Git & Github Basic](/_posts/2023-11-29-git-1.md)
 - #### [Git Rollback](/_posts/2023-11-29-git-2.md)
@@ -82,6 +76,10 @@ permalink: /
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 
+<br>
+
+### Development Tip
+- #### [Lock](/_posts/2023-11-29-tip-1.md)
 
 <br>
 <br>
