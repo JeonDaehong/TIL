@@ -49,6 +49,8 @@ permalink: /
 - #### [Inner Class](/_posts/2023-11-29-java-21.md)
 - #### [Exception](/_posts/2023-11-29-java-22.md)
 - #### [Collection Basic & Hash Basic](/_posts/2023-11-29-java-23.md)
+- #### [Annotation](/_posts/2023-11-29-java-24.md)
+- #### [Java Version](/_posts/2023-11-29-java-25.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
