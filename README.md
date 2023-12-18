@@ -25,6 +25,7 @@ permalink: /
 - #### [Binary Search](/_posts/2023-11-29-algorithm-6.md)
 - #### [MusicVideo(Binary Search)](/_posts/2023-11-29-algorithm-7.md)
 - #### [Choosing Stable(Binary Search)](/_posts/2023-11-29-algorithm-8.md)
+- #### [DFS(Recursive Function)](/_posts/2023-11-29-algorithm-9.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Etc Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Etc Tip](/_posts/2023-11-29-algorithm-3.md)
