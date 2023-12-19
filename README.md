@@ -83,6 +83,7 @@ permalink: /
 ### Web
 - #### [GET, POST, PUT, PATCH, DELETE](/_posts/2023-11-29-web-1.md)
 - #### [URL vs URI](/_posts/2023-11-29-web-2.md)
+- #### [API vs RestAPI](/_posts/2023-11-29-web-3.md)
 
 <br>
 
@@ -103,6 +104,8 @@ permalink: /
 - #### [TCP vs UDP](/_posts/2023-11-29-cs-9.md)
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
+- #### [Layered Architecture](/_posts/2023-11-29-cs-10.md)
+
 
 <br>
 
