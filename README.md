@@ -81,7 +81,8 @@ permalink: /
 <br>
 
 ### Web
-- #### [GET POST PUT PATCH DELETE](/_posts/2023-11-29-web-1.md)
+- #### [GET, POST, PUT, PATCH, DELETE](/_posts/2023-11-29-web-1.md)
+- #### [URL vs URI](/_posts/2023-11-29-web-2.md)
 
 <br>
 
