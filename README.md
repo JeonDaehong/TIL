@@ -81,6 +81,7 @@ permalink: /
 <br>
 
 ### Web
+- #### [Web internal operation](/_posts/2023-11-29-web-4.md)
 - #### [GET, POST, PUT, PATCH, DELETE](/_posts/2023-11-29-web-1.md)
 - #### [URL vs URI](/_posts/2023-11-29-web-2.md)
 - #### [API vs RestAPI](/_posts/2023-11-29-web-3.md)
@@ -111,6 +112,9 @@ permalink: /
 
 ### Development Tip
 - #### [Lock](/_posts/2023-11-29-tip-1.md)
+- #### [Iamge Upload](/_posts/2023-11-29-tip-2.md)
+- #### [When modifying a session in a hurry](/_posts/2023-11-29-tip-3.md)
+
 
 <br>
 <br>
