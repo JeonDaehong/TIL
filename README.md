@@ -64,6 +64,7 @@ permalink: /
 - #### [Shallow Copy vs Deep Copy](/_posts/2023-11-29-java-28.md)
 - #### [Daemon Thread](/_posts/2023-11-29-java-29.md)
 - #### [IO & NIO ( Blocking vs Non-Blocking )](/_posts/2023-11-29-java-30.md)
+- #### [JSP & Servlet](/_posts/2023-11-29-java-31.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
