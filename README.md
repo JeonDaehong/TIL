@@ -80,6 +80,11 @@ permalink: /
 
 <br>
 
+### Web
+- #### [GET POST PUT PATCH DELETE](/_posts/2023-11-29-web-1.md)
+
+<br>
+
 ### Git & Github
 - #### [Git & Github Basic](/_posts/2023-11-29-git-1.md)
 - #### [Git Rollback](/_posts/2023-11-29-git-2.md)
