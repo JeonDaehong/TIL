@@ -29,6 +29,8 @@ permalink: /
 - #### [Factorial](/_posts/2023-11-29-algorithm-10.md)
 - #### [Fibonacci ( Memoization )](/_posts/2023-11-29-algorithm-11.md)
 - #### [BinaryTree ( DFS )](/_posts/2023-11-29-algorithm-12.md)
+- #### [BinaryTree ( BFS )](/_posts/2023-11-29-algorithm-14.md)
+- #### [Find Subset ( DFS )](/_posts/2023-11-29-algorithm-13.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Etc Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Etc Tip](/_posts/2023-11-29-algorithm-3.md)
