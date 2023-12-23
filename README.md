@@ -33,6 +33,7 @@ permalink: /
 - #### [Find Subset ( DFS )](/_posts/2023-11-29-algorithm-13.md)
 - #### [Find Calf ( BFS )](/_posts/2023-11-29-algorithm-15.md)
 - #### [Shortest Distance ( DFS, BFS )](/_posts/2023-11-29-algorithm-16.md)
+- #### [Route Navigation ( Graph, DFS )](/_posts/2023-11-29-algorithm-17.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Etc Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Etc Tip](/_posts/2023-11-29-algorithm-3.md)
