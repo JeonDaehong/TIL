@@ -83,6 +83,7 @@ permalink: /
 - #### [Spring Bean](/_posts/2023-11-29-spring-7.md)
 - #### [Autowired](/_posts/2023-11-29-spring-5.md)
 - #### [Quilifier vs Primary](/_posts/2023-11-29-spring-6.md)
+- #### [POJO](/_posts/2023-11-29-spring-8.md)
 - #### [Spring Etc Study](/_posts/2023-11-29-spring-4.md)
 
 <br>
