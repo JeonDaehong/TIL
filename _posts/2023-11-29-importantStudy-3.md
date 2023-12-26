@@ -60,6 +60,18 @@ mermaid: true
  
 <br>
 <br>
+
+### DB Index 사용 방법
+ - MySQL 기준이다.
+ 
+ - TB_USER 라는 테이블의 USER_NAME 을 기준으로 하는 IDX_USER 라는 index 를 만드는 예시이다.
+ 
+ ```mysql
+ CREATE INDEX IDX_USER ON TB_USER(USER_NAME);
+ ```
+ 
+<br>
+<br>
 <br>
 <br>
 <br>
