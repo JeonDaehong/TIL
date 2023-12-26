@@ -81,6 +81,35 @@ mermaid: true
 		- REPEATABLE READ 격리 수준일 때 Update 문은 자동적으로 배타락이 걸리기 때문에, 해당 게시글을 가져오거나 수정하는데에 있어서 속도 문제가 발생할 수 있음. ( Lock 획득을 기다려야 하기 때문에 ) ( 배타락은 읽기 쓰기 모두 Lock 을 걸어서 허용하지 않는다. )
 
 <br>
+
+ - **Write Through 패턴**
+ 
+ - **Write Around 패턴**
+ 
+<br>
+<br>
+
+### 쓰기 + 읽기 전략의 조합
+
+ - **Look Aside + Write Around**
+
+	- 일반적으로 가장 많이 사용하는 조합 패턴
+
+<br>
+
+ - **Read Through + Write Around**
+ 
+	- 항상 DB에 쓰고, 캐시에서 읽을 때에도 항상 DB에서 먼저 읽어오므로, 데이터 정합성 이슈에 안전 장치를 구성할 수 있다.
+
+<br>
+
+ - **Read Through + Write Through**
+ 
+	- 데이터를 쓸 때 캐시에 먼저 쓰므로, 읽어올 떄 최신 캐시 데이터 보장
+	
+	- 데이터를 쓸 때 항상 캐시에서 DB로 보내므로, 데이터 정합성도 보장
+
+<br>
 <br>
 <br>
 <br>
