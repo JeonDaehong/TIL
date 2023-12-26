@@ -27,7 +27,47 @@ mermaid: true
  - 프로세스의 범위를 가지며, 프로세스가 종료될 때 자동으로 Clean up 된다.
  - **예를들면 다음과 같다.**
 	- A라는 사람이 키를 가지고 하나뿐인 화장실을 감. 다음 사람들은 줄을 서있음. A가 볼일을 다 보고, 와서 다음 사람에게 화장실 Key를 넘김. Key를 받은 사람이 화장실을 감.
+ - ** 뮤택스를 구현한 예시 코드이다.**
+ 
+	```java
+	import java.util.concurrent.locks.Lock;
+	import java.util.concurrent.locks.ReentrantLock;
 
+	public class MutexExample {
+		private final Lock mutex = new ReentrantLock();
+
+		public void performCriticalSection() {
+			try {
+				// 뮤텍스 획득
+				mutex.lock();
+
+				// 크리티컬 섹션 (임계 영역) 코드
+				System.out.println("Critical Section: " + Thread.currentThread().getName());
+
+			// 뮤텍스 해제
+			} finally {
+				mutex.unlock();
+			}
+		}
+
+		public static void main(String[] args) {
+			MutexExample example = new MutexExample();
+
+			// 여러 스레드에서 크리티컬 섹션 접근 시도
+			for (int i = 0; i < 5; i++) {
+				new Thread(() -> {
+					example.performCriticalSection();
+				}).start();
+			}
+		}
+	}
+	```
+	
+	- 이 코드에서 ReentrantLock 객체를 생성하고
+	- performCriticalSection 메서드에서 크리티컬 섹션을 진입하기 전에 lock() 메서드를 호출하여 뮤텍스를 획득하고,
+	- 크리티컬 섹션을 빠져나갈 때에는 unlock() 메서드를 호출하여 뮤텍스를 해제한다. 
+	- 이렇게 함으로써 한 번에 하나의 스레드만 크리티컬 섹션에 접근할 수 있다.
+	
 <br>
 <br>
 
