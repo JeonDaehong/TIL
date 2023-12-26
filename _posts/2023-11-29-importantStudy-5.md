@@ -138,8 +138,175 @@ mermaid: true
 	
  <br>
  
+ - **@Transactional 과 AOP의 동작**
  
+	- 1. target에 대한 호출이 들어오면 AOP proxy가 이를 가로채서(intercept) 가져온다.
 	
+	- 2. AOP proxy에서 Transaction Advisor가 commit 또는 rollback 등의 트랜잭션 처리를 한다.
+	
+	- 3. 트랜잭션 처리 외에 다른 부가 기능이 있을 경우 해당 Custom Advisor에서 그 처리를 한다.
+	
+	- 4. 각 Advisor에서 부가 기능 처리를 마치면 Target Method를 수행한다.
+	
+	- 5. interceptor chain을 따라 caller에게 결과를 다시 전달한다.
+	
+ <br>
+ 
+ - **트랜잭션도 AOP를 사용하여 프록시 객체로 만들어 진다.**
+ 
+	- 이는 해당 메서드의 앞 뒤에 startTransaction( );과 endTransaction( ); 를 통해 커밋 혹은 롤백을 수행해주는 기능을 추가한다.
+	
+	- 그렇게 Proxy 형태로 동작하기 때문에 외부에서 접근 가능한 접근제어자의 메서드만 설정할 수 있다.
+	
+	- AOP 에도 @Brfore 와 @After 로 특정 메서드의 앞 뒤에 동작하는 메서드를 만들 수 있다. 그러듯 트랜잭션 앞 뒤에 시작점과 끝점을 알 수 있는 메서드를 넣어서 전체 커밋을 하거나, 롤백을 시킬 수 있는 것이다.
+
+<br>
+<br>
+
+### Self-Invocation
+ - Transaction 사용시 생길 수 있는 문제가 바로 self-invocation 문제이다.
+ 
+ - @Transactional 이 하나라도 있는 클래스는 프록시 객체로 저장이 된다.
+ 
+ - 그러나, 같은 클래스 안에서 메서드를 호출하는 경우, this.Method( ); 이런 식으로 호출하는 격이 되는데, 이러면 프록시 객체의 메서드를 호출하는 것이 아니라, 원본 객체의 메서드를 호출하게 된다
+ 
+ - 그래서 생기는 대표적인 문제 2가지를 아래에서 설명하고자 한다.
+ 
+ - **self-invocation 의 대표적인 2가지 문제**
+ 
+	- **1. 일반 메서드 안에서 같은 클래스의 @Transactional 메서드를 호출했을 경우**
+	
+		- 일반 메서드 A 안에서 Transactional 이 붙은 B 메서드를 호출하면, 프록시 객체에서 A를 실행하게 되는데, 
+		
+		- 이 때 A 안에 있는 B는 this.B( ); 로 호출되어 프록시 객체 속의 B 메서드가 아니라, 원본 객체의 B가 호출된다. 
+		
+		- 그래서 B는 앞 뒤로 startTransaction( ); 과 endTransaction( ); 이 붙지 않으므로 트랜잭션 처리가 되지 않는다.
+		
+		- startTransaction( ); 과 endTransaction( ); 가 붙는 건 트랜잭션 처리로 인해 만들어진 프록시 객체 내의 메서드에서만 이루어진다.
+	
+	- **2. @Transactional 메서드 안에서 같은 클래스의 Propagation.REQUITES_NEW 나, Propagation.NESTED 가 붙은 @Transactional 메서드가 실행되는 경우**
+	
+		- 1번과 맥락은 비슷하다.
+		
+		- Transactional 이 동작하는 A 안에서 Transactional Propagation.REQUITES_NEW 이 붙은 새로운 물리 트랜잭션을 만들려고 한다.
+		
+		- 이걸 동작 시키면, 프록시 객체 내의 A 메서드가 동작하여
+		
+		- startTransaction( ); --> A( ); --> endTransaction( ); 이런 순서로 동작을 하게 되는데,
+		
+		- A( ); 안에서 호출되는 B( ); 역시 this.B( ); 로 프록시 객체가 아니라, 원본 객체의 B 메서드를 불러온다.
+		
+		- 그래서 트랜잭션 처리가 안된다.
+		
+		- 고로 우리가 원하는 새로운 물리 트랜잭션을 호출하여 별도 커밋하거나, 별도 롤백을 하는 등의 처리에서 예기치 못한 오류를 불러일으킬 수 있다.
+	
+-  이 뿐만 아니라, 뭔가 전 후에 처리를 해주어야 하는 AOP의 커스텀어노테이션을 만들었다면, @Transactional 처럼 같은 클래스 안에서 부르는 일은 되도록 피하는 것이 좋다.
+
+- 이를 해결하는 방법으로는 AspectJ 를 사용하는 방법이나, 클래스 내 로직을 AOP로 완전히 묶는 방법이 있는데, 둘 다 비추천 하고 가장 좋은 건 self-invocation 방황을 아예 만들지 않는 것이다.
+
+- 그러나 꼭 만들어야만 하겠다면, 최초 실행되는 메서드에만 @Transactional 을 붙이거나, 클래스 자체에 @Transactional 을 붙이고 메서드들에는 붙이지 않는 방법으로 개발하도록 하자.
+
+- 만약 안에서 실행되는 메서드에 꼭 Transactional을 붙여야 한다면.. 가급적 객체의 책임을 분리하여 외부 호출 하는 방법을 추천한다.
+
+- 또 JPA를 쓰는경우 self-invocation으로 인해 트랜잭션이 처리되지 말아야 하는 경우지만, 트랜잭션 처리가 되어 DB에 저장은 되는 경우가 있는데
+
+- 이는 JpaRepository를 상속하면 구현체인 SimpleJpaRepository가 실행되고, SimpleJpaRepository에는 기본적으로 트랜잭션이 붙어있기 때문에 이런 처리가 되는 것이다.
+
+- 이를 헷갈리면 안된다. 결론적으로는 JpaRepository를 제외한 그 앞,뒤에서 일어난 트랜잭션은 처리가 되지 않았을 것이다.
+
+<br>
+<br>
+
+### synchronized 를 사용하려면 @Transactional 어노테이션을 삭제해야 하는 이유
+  - @Transactional 이 붙은 메서드가 있는 클래스의 경우 프록시 객체로 저장되는데, 그 안에서는 원래 객체를 필드로 보유해서 생성자로 받는다.
+ 
+  - 그리고 트랜잭션이 붙어있던 메서드가 앞뒤로 startTransaction( ); 과 endTransaction( ); 이 붙은 상태로 존재한다.
+ 
+  - 즉, startTransaction( ); -> 실행메서드 -> endTransaction( ); 순서로 실행된다.
+  
+  - 그러나, synchronized 가 붙어있는건 프록시 객체의 메서드가 아니라, 원래 본체 메서드만이므로, 실행메서드에는 하나의 스레드만 접근 가능하지만, @@Transactional 로 인해 프록시 객체 속 메서드가 실행되므로 endTransaction( ); 가 실행되기 전에 새로운 스레드가 접근할 수 있다.
+  
+  - 그래서 동시성 이슈가 해결되지 않는다.
+  
+  - 그러므로 @Transactional 을 삭제해주어야 한다. 하지만 그러면 때에따라 원자성이 보장되어야 하는 메서드에서 그렇지 못하게 될 수 있으므로 권장하는 방법은 아니며, 비관적락이나 낙관적락 혹은 레디스를 활용하는 분산락등을 이용하는 것을 추천한다.
+
+<br>
+<br>
+
+### DB 격리수준과 Transaction
+ - DB의 격리수준은 고립도와 성능의 트레이드 오프 관계를 갖고 조절한다.
+ 
+ - **READ UNCOMMITTED**
+ 
+	- 언제든지 읽기 작업을 할 수 있기 때문에 커밋되지 않은 변경사항도 조회 할 수 있다.
+	
+	- **Dirty Read** 현상이 발생 할 수 있다.
+	
+		- A Transaction 이 값을 변경하고, B Transaction 이 그 값을 읽어 옴.
+		
+		- A Transaction 이 RollBack 을 함.
+		
+		- B Transaction 은 잘못된 값을 가져온 것이 되어버리는 문제 발생.
+	
+	- @Transactional(isolation = Isolation.READ_UNCOMMITTED) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
+
+ <br>
+ 
+ - **READ COMMITTED**
+ 
+	- 커밋된 데이터만 읽어올 수 있음
+	
+	- 오라클의 기본 격리 수준
+	
+	- 가장 많이 선택되는 격리 수준이기도 함.
+	
+	- A 트랜잭션이 값을 변경 할 때 커밋을 하지 않았으면, B 트랜잭션이 접근 할 때 이전 값을 받아가고, A가 커밋을 하면 그 순간부터 B트랜잭션이 변경된 값을 반환 받는다.
+	
+	- **Non Repeatable Read** 현상이 발생 할 수 있다.
+	
+		- A Transaction 이 값을 변경 하는 도중, B Transaction 이 연속으로 2번 Read 함.
+		
+		- 그 사이에 Commit 이 일어났음.
+		
+		- B Transaction 은 같은 로직을 사용했는데 가져온 값이 다른 문제 발생. 
+	
+	- @Transactional(isolation = Isolation.READ_COMMITTED) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
+
+ <br>
+ 
+ - **REPEATABLE READ**
+ 
+	- MySQL 기본 격리 수준
+	
+	- 변경 전의 레코드를 전부 UNDO 공간에 백업하는데, 거기서 데이터를 세밀하게 제어하고, 읽어오므로 Non Repeatable Read 문제를 해결할 수 있음.
+	
+	- 즉, 자신보다 먼저 실행된 트랜잭션 데이터 중 최신만을 조회한다.
+	
+		- UNDO : 최신 데이터를 오래된 데이터로 롤백하기 위한 공간
+		
+		- REDO : 오래된 데이터를 최신 데이터로 만들기 위한 공간
+		
+	- **Phantom Read** 문제가 생길 수 있다.
+	
+		- B Transaction 이 값을 2번 읽어옴
+		
+		- 그 사이 A Transaction 이 INSERT 문으로 값을 추가해버림.
+		
+		- 새로운 레코드까지는 막을 수 없으므로, B Transaction 에는 역시 값이 다르게 들어옴.
+ 
+ 	- @Transactional(isolation = Isolation.REPEATABLE_READ) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
+ 
+ 
+ <br>
+ 
+ - **SERIALIZABLE**
+ 
+	- 읽기,쓰기 다 포함하여 순차적으로 트랜잭션을 진행 시킨다.
+	
+	- 데이터 부정합 문제가 발생하지 않지만, 성능이 너무 떨어진다.
+	
+	- @Transactional(isolation = Isolation.SERIALIZABLE) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
+
 <br>
 <br>
 <br>
