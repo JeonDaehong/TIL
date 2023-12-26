@@ -223,7 +223,58 @@ mermaid: true
 <br>
  
  - **Atomic**
+	- Atomic 이 붙은 클래스.. 예를 들어 AtomicInteger, AtomicLong 과 같은 클래스를 통해 사용할 수 있다.
+	
+	- Lock 을 거는 synchronized 방식과 다르게 CAS 알고리즘을 사용한다.
+	
+	- CAS 알고리즘 : 현재 스레드가 존재하는 CPU의 Cache 메모리와 Main 메모리의 값을 비교하여, 일치하는 경우 새로운 값으로 교체하고, 일치 하지 않으면 기존 교체를 실패처리하고 재시도 하는 방식 
+ 
+	- 내부 코드를 확인해보면 volatile 처리가 된 value를 가지고 있어서 가시성도 보장이 된다. 
+	
+	- 그리고 CAS 알고리즘을 적용한 메서드 호출을 통해 원자성도 보장해준다.
+	
+	- Atomic은 직접적으로 Lock 을 거는게 아니기 때문에 synchronized 보다 성능이 좋다.
+	
+	- 다음은 Atomic 을 사용한 예시 코드이다.
+	
+	```java
+	import java.util.concurrent.atomic.AtomicInteger;
 
+	public class AtomicExample {
+		private static AtomicInteger counter = new AtomicInteger(0);
+
+		private static void incrementCounter() {
+			for (int i = 0; i < 1000000; i++) {
+				counter.incrementAndGet(); // Atomic 연산: 현재 값에 1을 더하고 그 값을 반환
+			}
+		}
+
+		public static void main(String[] args) throws InterruptedException {
+			Thread thread1 = new Thread(AtomicExample::incrementCounter);
+			Thread thread2 = new Thread(AtomicExample::incrementCounter);
+
+			thread1.start();
+			thread2.start();
+
+			thread1.join();
+			thread2.join();
+
+			System.out.println("최종 카운터 값 (Atomic): " + counter.get());
+		}
+	}
+	```
+	
+	- **추가 상식**
+		- Map 을 보면 HashTable과 HashMap 그리고 ConcurrentHashMap 이 있는데, 이 중 thread-safe 하지 않은 HashMap 은 동기화가 안되니 제외하고, HashTable은 내부적으로 메서드 자체에 synchronized 를 걸기에 성능이 다소 떨어진다.
+		
+		- 그리고 ConcurrentHashMap 은 내부적으로 synchronized 블럭과 CAS 알고리즘을 채택하여, 특정 버킷에 대해서만 Lock 을 걸기때문에 성능이 우수하다.
+		
+		- 멀티스레드 환경에서는 CAS 알고리즘을 사용하는 Atomic 이나 ConcurrentHashMap 을 사용하면 좋다.
+ 
+	- 그러나 위의 세 가지 방법은 서버와 DB가 모두 1개만 있을 경우에 사용 가능한 방법이다.
+애플리케이션 서버가 여러개일경우에는 위 방식을 사용하면 안된다. 애플리케이션 단에서 동시성을 보장할 방법이 없기 때문이다.
+ 
+	- 그럴 경우 이제 DB 단에서 Lock을 걸어 해결해야 한다.
  
 <br>
 <br>
