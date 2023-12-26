@@ -37,7 +37,7 @@ mermaid: true
  - **예를들면 다음과 같다.**
 	- A라는 사람이 키를 가지고 하나뿐인 화장실을 감. 다음 사람들은 줄을 서있음. A가 볼일을 다 보고, 와서 다음 사람에게 화장실 Key를 넘김. Key를 받은 사람이 화장실을 감.
  
- - ** 뮤택스를 구현한 예시 코드이다.**
+ - **뮤택스를 구현한 예시 코드이다.**
  
 	```java
 	import java.util.concurrent.locks.Lock;
@@ -84,12 +84,61 @@ mermaid: true
 
 ### 세마포어 ( Semaphore ) 란?
  - 동기화 대상이 하나 이상일 때 사용한다.
+ 
  - 정해진 갯수 만큼의 스레드가 접근할 수 있으며, 하나의 스레드가 접근 할 때마다 갯수의 수가 마이너스 되고, 나오면 플러스가 된다.
+ 
  - 자원 소유가 불가능하다.
+ 
  - 다른 스레드가 세마포어를 해제할 수 있다.
+ 
  - 시스템 범위에 걸쳐있고, 파일 시스템 상의 파일로 존재한다.
+
  - **예를들면 다음과 같다.**
 	- 화장실이 3개가 있고, 한 사람이 들어가면 2개가 남는다. 그리고 그 사람이 나오면 다시 3개가 된다. 3명이 들어가서 화장실 남은 갯수가 0개면, 다음에 오는 사람들은 기다려야 한다.
+
+ - **세마포어를 구현한 예시 코드이다.**
+	
+	```java
+	import java.util.concurrent.Semaphore;
+
+	public class SemaphoreExample {
+		private static final int MAX_AVAILABLE_RESOURCES = 3;
+		private static final Semaphore semaphore = new Semaphore(MAX_AVAILABLE_RESOURCES, true);
+
+		public void accessSharedResource() {
+			try {
+				// 세마포어 획득
+				semaphore.acquire();
+
+				// 공유 자원에 대한 작업 수행
+				System.out.println("Accessing shared resource: " + Thread.currentThread().getName());
+
+				// 세마포어 반환
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				semaphore.release();
+			}
+		}
+
+		public static void main(String[] args) {
+			SemaphoreExample example = new SemaphoreExample();
+
+			// 여러 스레드에서 공유 자원에 접근 시도
+			for (int i = 0; i < 5; i++) {
+				new Thread(() -> {
+					example.accessSharedResource();
+				}).start();
+			}
+		}
+	}
+	```
+	
+	- 이 코드에서 Semaphore 객체를 생성하고 accessSharedResource 메서드에서 세마포어를 획득하기 위해 acquire() 메서드를 호출한다.
+	세마포어가 획득되면 공유 자원에 대한 작업을 수행하고,
+	마지막에 release() 메서드를 호출하여 세마포어를 반환한다. 
+
+	- 이렇게 함으로써 지정된 수의 스레드만이 동시에 공유 자원에 접근할 수 있다.
 
 <br>
 <br>
