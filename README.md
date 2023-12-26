@@ -20,7 +20,7 @@ permalink: /
 ## TIL List
 
 ### Very Important Study Content
-- #### [Mischief](/_posts/2023-11-29-importantStudy-1.md)
+- #### [Mutex & Semaphore (Concurrency issues)](/_posts/2023-11-29-importantStudy-1.md)
 
 <br>
 
