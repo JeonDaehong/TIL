@@ -24,6 +24,7 @@ permalink: /
 - #### [Concurrency issues And Lock](/_posts/2023-11-29-importantStudy-2.md)
 - #### [DB index to improve performance](/_posts/2023-11-29-importantStudy-3.md)
 - #### [Redis Cache & Update Strategy](/_posts/2023-11-29-importantStudy-4.md)
+- #### [Very Important Transaction](/_posts/2023-11-29-importantStudy-5.md)
 
 <br>
 
