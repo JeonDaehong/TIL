@@ -19,6 +19,11 @@ permalink: /
 
 ## TIL List
 
+### Very Important Study Content
+- #### [Mischief](/_posts/2023-11-29-importantStudy-1.md)
+
+<br>
+
 ### Algorithm ( Daily Problem Solving )
 - #### [Mischief](/_posts/2023-11-29-algorithm-4.md)
 - #### [TwoDimensional Array Sorting](/_posts/2023-11-29-algorithm-5.md)
