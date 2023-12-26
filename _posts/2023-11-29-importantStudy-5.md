@@ -43,9 +43,9 @@ mermaid: true
 <br>
 
 ### 논리적 트랜잭션 & 물리적 트랜잭션
- - 물리적 트랜잭션은 실제로 DB에서 Commit 되거나 RollBack 되는 트랜잭션이다.
+ - 물리적 트랜잭션은 실제로 **DB에서 Commit 되거나 RollBack 되는 트랜잭션**이다.
  
- - 논리적 트랜잭션은 @Transactional 단위 하나로 스프링이 트랜잭션 매니저를 통해 트랜잭션을 처리하는 단위이다.
+ - 논리적 트랜잭션은 **@Transactional 단위 하나로 스프링이 트랜잭션 매니저를 통해 트랜잭션을 처리하는 단위**이다.
  
  - 논리적 트랜잭션 중 하나라도 문제가 생긴다면, 물리적 트랜잭션은 RollBack 이 일어나고, 논리적 트랜잭션이 전부 정상 작동 되어야지만 물리적 트랜잭션의 Commit 이 일어난다.
  
@@ -53,23 +53,23 @@ mermaid: true
  
  - 그걸 조작하기 위해 @Transactional 에는 propagation 옵션이 존재한다.
  
-	- propagation = Propagation.REQUIRED
+	- **propagation = Propagation.REQUIRED**
 	
 		- 가장 기본이다. propagation = Propagation.REQUIRED 을 굳이 적지 않아도 되며, 안적으면 이 코드로 Default 동작을 한다.
 		
 		- 기존 트랜잭션이 없으면 생성하고, 기존 트랜잭션이 있으면 기존 트랜잭션에 참여한다.
  
-	- propagation = Propagation.SUPPORTS
+	- **propagation = Propagation.SUPPORTS**
 	
 		- 기존 트랜잭션이 있으면 지원하고, 없으면 트랜잭션 없이 진행된다.
 		
-	- propagation = Propagation.MANDATORY
+	- **propagation = Propagation.MANDATORY**
 	
 		- 기존 트랜잭션이 반드시 있어야 한다.
 		
 		- 기존 트랜잭션이 없으면 예외가 발생하고, 있으면 기존 트랜잭션에 참여한다.
 		
-	- propagation = Propagation.REQUITES_NEW
+	- **propagation = Propagation.REQUITES_NEW**
 	
 		- 기존 트랜잭션이 없으면 신규 트랜잭션을 생성한다.
 		
@@ -87,7 +87,7 @@ mermaid: true
 		
 		- Propagation.REQUIRED 랑 다를게 뭐냐? 이 경우 Propagation.REQUIRED 를 썼다면, catch 로 예외설정을 잘 해주어도 부모트랜잭션이 롤백을 해버린다.
 	
-	- propagation = Propagation.NOT_SUPPORTS
+	- **propagation = Propagation.NOT_SUPPORTS**
 
 		- 트랜잭션을 지원하지 않음.
 		
@@ -95,7 +95,7 @@ mermaid: true
 		
 		- 기존 트랜잭션이 있으면 그 트랜잭션을 보류하고 트랜잭션 없이 진행함.
 		
-	- propagation = Propagation.NEVER
+	- **propagation = Propagation.NEVER**
 	
 		- 트랜잭션을 사용하지 않음
 		
@@ -103,13 +103,42 @@ mermaid: true
 		
 		- 기존 트랜잭션이 있으면 예외를 발생시킴
 		
-	- propagation = Propagation.NESTED
+	- **propagation = Propagation.NESTED**
 	
 		- 자식 트랜잭션을 만듬
 		
 		- 기존 트랜잭션이 없으면 새 트랜잭션을 생성함
 		
 		- 기존 트랜잭션이 있으면 자식 트랜잭션을 만듦.
+		
+<br>
+<br>
+
+### Transaction 과 Proxy
+
+ - @Transactional 이 붙은 메서드가 있다면, 그 클래스는 프록시 객체를 만든다.
+ 
+ - Proxy 패턴이란 대상 객체의 기능을 대신 수행하는 대리 객체를 사용하는 패턴이다.
+ 
+ - 실제 객체가 아닌 임의의 객체를 생성하여 주입하며, 앞이나 뒤에 공통적인 로직을 삽입하고 싶을 때 사용한다.
+ 
+ - JDK Proxy 와 CGLib Proxy 가 있다.
+ 
+	- JDK Proxy 는 Spring AOP Default 프록시 방식이며 인터페이스가 없으면 안됨.
+	
+	- CGLib Proxy 는 Class의 byte code를 조작하여 프록시 객체를 만들며 Extends 방식으로 구현한다. JDK 방식보다 성능이 좋으며 Spring Boot 의 기본 AOP 전략으로 사용된다.
+	
+	| 특징               | JDK Proxy                         | CGLib Proxy                         |
+	|-------------------|-----------------------------------|-------------------------------------|
+	| 프록시 생성 방식     | 인터페이스를 구현한 클래스에 대한 프록시 생성 | Class의 byte code를 조작하여 프록시 객체 생성 (상속) |
+	| 인터페이스 필요 여부 | 인터페이스가 있어야 프록시 생성 가능      | 인터페이스 없이도 클래스에 대한 프록시 생성 가능     |
+	| 성능                | 일반적으로 상대적으로 덜 성능적인 특징   | 일반적으로 높은 성능을 가짐               |
+	| 사용 예시            | Spring AOP의 기본 프록시 방식            | Spring Boot의 기본 AOP 전략, 인터페이스 없이도 프록시 생성 가능 |
+	| 제약 사항           | 인터페이스를 구현한 클래스에 대한 프록시 생성 | 상속이 불가능한 final 클래스에 대한 프록시 생성이 어려움 |
+	
+ <br>
+ 
+ 
 	
 <br>
 <br>
