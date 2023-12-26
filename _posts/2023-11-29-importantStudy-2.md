@@ -144,6 +144,81 @@ mermaid: true
 <br>
  
  - **Synchronized**
+	- synchronized 은 메서드에 걸거나, synchronized 블럭을 만들어서 사용한다.
+	
+	- 해당 메서드 및 블럭에는 한 개의 쓰레드만 접근이 가능한데, 연산에 대하여 쓰레드 하나씩 수행하기 때문에 가시성과 원자성을 모두 보장한다.
+	
+	- 다만, 이러한 Lock을 거는 방식 자체가 Blocking 방식이기 때문에 병목 현상을 일으키기 쉽고, 데드락 상태가 될 수도 있기 때문에 조심해서 사용해야한다.
+	
+	- 그리고 JPA나 Spring 환경에서 사용할 때에는 @Transactional 어노테이션을 지우고 사용해야 한다.
+	
+	- @Transactional 은 프록시 객체로 동작하여 @Transactional 이 붙은 그 메서드 앞 뒤로 startTransaction( ); endTransaction( ); 메서드를 동작시키는데 endTransaction( ) 이 작동하기 전에 다른 스레드가 들어올 수 있어서 동기화가 제대로 이루어지지 않을 수 있다. ( 프록시에 대해서는 추후 포스팅 할 예정이다. )
+ 
+	- synchronized 를 활용하여 동시성 문제를 해결한 예시코드이다.
+	
+	```java
+	public class SynchronizedExample {
+		// 공유 변수
+		private static int counter = 0;
+
+		// 메서드에 synchronized 키워드 추가
+		private synchronized static void incrementCounter() {
+			for (int i = 0; i < 1000000; i++) {
+				counter++;
+			}
+		}
+
+		public static void main(String[] args) throws InterruptedException {
+			// 두 개의 스레드 생성
+			Thread thread1 = new Thread(SynchronizedExample::incrementCounter);
+			Thread thread2 = new Thread(SynchronizedExample::incrementCounter);
+
+			// 스레드 시작
+			thread1.start();
+			thread2.start();
+
+			// 스레드가 종료될 때까지 대기
+			thread1.join();
+			thread2.join();
+
+			// 결과 출력
+			System.out.println("최종 카운터 값: " + counter);
+		}
+	}
+	```
+	
+	```java
+	public class SynchronizedExample {
+		private static int counter = 0;
+		private static final Object lock = new Object();  // 락 객체 생성
+
+		private static void incrementCounter() {
+			for (int i = 0; i < 1000000; i++) {
+				// synchronized 블록 사용
+				synchronized (lock) {
+					counter++;
+				}
+			}
+		}
+
+		public static void main(String[] args) throws InterruptedException {
+			Thread thread1 = new Thread(SynchronizedExample::incrementCounter);
+			Thread thread2 = new Thread(SynchronizedExample::incrementCounter);
+
+			thread1.start();
+			thread2.start();
+
+			thread1.join();
+			thread2.join();
+
+			System.out.println("최종 카운터 값 (synchronized block): " + counter);
+		}
+	}
+	```
+	
+	- 해당 코드의 출력값은 2000000 이 나온다.
+	
+	- 그러나, synchronized 를 사용하지 않는다면 그것보다 적은 예측할 수 없는 값이 나오게 된다.
  
 <br>
  
