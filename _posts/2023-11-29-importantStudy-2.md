@@ -68,6 +68,78 @@ mermaid: true
 	- volatile 은 변수에 설정해주는 것인데, 해당 변수에 대해 CPU cache를 사용하는 것이 아닌 메인 메모리에서 바로 올리고 내릴 수 있게 하여, 가시성을 보장해준다.
 
 	- 그러나 원자성을 보장하지 않기 때문에 동시성 이슈는 해결하지 못한다.
+	
+	- 다음은 Volatile 을 활용한 예시 코드이다.
+	
+	```java
+	public class VolatileExample {
+		private static volatile int sharedValue = 0;
+
+		public static void main(String[] args) {
+			// 스레드 1: 값을 증가시킴
+			Thread thread1 = new Thread(() -> {
+				for (int i = 0; i < 5; i++) {
+					System.out.println("Thread 1: Incrementing sharedValue");
+					sharedValue++;
+					sleepForRandomTime();
+				}
+			});
+
+			// 스레드 2: 값을 읽음
+			Thread thread2 = new Thread(() -> {
+				for (int i = 0; i < 5; i++) {
+					System.out.println("Thread 2: Reading sharedValue: " + sharedValue);
+					sleepForRandomTime();
+				}
+			});
+
+			// 스레드 실행
+			thread1.start();
+			thread2.start();
+		}
+
+		private static void sleepForRandomTime() {
+			try {
+				Thread.sleep((long) (Math.random() * 1000));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	```
+	
+	- volatile 을 통해 가시성 이슈를 해결 할 수 있다.
+	
+	- 해당 코드의 결과는 다음과 같이 나온다.
+	
+	```plaintext
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 1
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 2
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 3
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 4
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 5
+	```
+	
+	- 그러나, 만약 volatile을 사용하지 않았다면 숫자 증가가 메인 메모리에 늦게 올라가기 때문에,
+	가시성 이유때문에 아래와 같은 결과가 나오게 된다.
+	
+	```plaintext
+	Thread 1: Incrementing sharedValue
+	Thread 1: Incrementing sharedValue
+	Thread 1: Incrementing sharedValue
+	Thread 1: Incrementing sharedValue
+	Thread 1: Incrementing sharedValue
+	Thread 2: Reading sharedValue: 0
+	Thread 2: Reading sharedValue: 0
+	Thread 2: Reading sharedValue: 0
+	Thread 2: Reading sharedValue: 0
+	Thread 2: Reading sharedValue: 0
+	```
 
 <br>
  
