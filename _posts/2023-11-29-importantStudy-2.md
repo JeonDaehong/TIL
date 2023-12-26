@@ -297,6 +297,36 @@ mermaid: true
  
 	- JPA에서는 Repository 단에서 PESSIMISTIC_READ 으로 공유락을, PESSIMISTIC_WRITE 으로 배타락을 거는데.. 보통은 배타락으로 많이 건다.
  
+	- 아래는 비관적 락을 적용한 코드이다
+	
+	```java
+	@Service
+	public class PessimisticLockStockService {
+
+		private final StockRepository stockRepository;
+
+		public PessimisticLockStockService(StockRepository stockRepository) {
+			this.stockRepository = stockRepository;
+		}
+
+		@Transactional
+		public void decrease(Long id, Long quantity) {
+			Stock stock = stockRepository.findByIdWithPessimisticLock(id);
+			stock.decrease(quantity);
+			stockRepository.save(stock);
+		}
+	}
+	```
+	
+	```java
+	public interface StockRepository extends JpaRepository<Stock, Long> {
+		// 비관적 락
+		@Lock(LockModeType.PESSIMISTIC_WRITE)
+		@Query("select s from Stock s where s.id = :id")
+		Stock findByIdWithPessimisticLock(Long id);
+	}
+	```
+ 
 	- **추가 상식**
 		- MySQL의 기본적인 Update, Delete 문에는 베타락이 걸려있는데,
 		- 그래서 게시판의 조회수 증가 로직 같이 레코드를 Update 해주는 경우 동시에 많은 대상이 몰려 조회수를 Update 할 경우 베타락 때문에 게시글을 수정하는 Update문도 기다려야되는 성능 악화가 일어날 수 있다.
@@ -311,7 +341,61 @@ mermaid: true
 	
 	- 동시 요청에 대한 처리 성능이 좋으나, 롤백 로직을 직접 구현해줘야하고, 빈번한 충돌이 있는 서비스에 사용할 경우 롤백 로직이 자주 동작하여 성능에 문제가 생길 수 있다.
 	
-	- 기가 잦아 성능적으로 중요할 때 사용하며, 어쩌다 한 번씩 일어날 충돌을 대비해야 하는 로직에 사용하는게 좋다.
+	- 읽기가 잦아 성능적으로 중요할 때 사용하며, 어쩌다 한 번씩 일어날 충돌을 대비해야 하는 로직에 사용하는게 좋다.
+ 
+	- 아래는 낙관적 락을 적용한 예시 코드이다.
+	
+	```java
+	@Service
+	public class OptimisticLockStockService {
+
+		private final StockRepository stockRepository;
+
+		public OptimisticLockStockService(StockRepository stockRepository) {
+			this.stockRepository = stockRepository;
+		}
+
+		@Transactional
+		public void decrease(Long id, Long quantity) {
+			Stock stock = stockRepository.findByIdWithOptimisticLock(id);
+			stock.decrease(quantity);
+			stockRepository.save(stock);
+		}
+	}
+	```
+	
+	```java
+	@Component
+	public class OptimisticLockStockFacade {
+
+		private final OptimisticLockStockService optimisticLockStockService;
+
+		public OptimisticLockStockFacade(OptimisticLockStockService optimisticLockStockService) {
+			this.optimisticLockStockService = optimisticLockStockService;
+		}
+
+		public void decrease(Long id, Long quantity) throws InterruptedException {
+			while (true) {
+				try {
+					optimisticLockStockService.decrease(id, quantity);
+					break;
+				} catch (Exception e) {
+					Thread.sleep(50);
+				}
+			}
+		}
+
+	}
+	```
+	
+	```java
+	public interface StockRepository extends JpaRepository<Stock, Long> {
+		// 낙관적 락
+		@Lock(LockModeType.OPTIMISTIC)
+		@Query("select s from Stock s where s.id = :id")
+		Stock findByIdWithOptimisticLock(Long id);
+	}
+	```
  
 <br>
 <br>
