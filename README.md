@@ -22,6 +22,8 @@ permalink: /
 ### Very Important Study Content
 - #### [Mutex & Semaphore](/_posts/2023-11-29-importantStudy-1.md)
 - #### [Concurrency issues And Lock](/_posts/2023-11-29-importantStudy-2.md)
+- #### [DB index to improve performance](/_posts/2023-11-29-importantStudy-3.md)
+
 
 <br>
 
