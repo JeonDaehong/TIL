@@ -224,7 +224,7 @@ mermaid: true
  
   - 즉, startTransaction( ); -> 실행메서드 -> endTransaction( ); 순서로 실행된다.
   
-  - 그러나, synchronized 가 붙어있는건 프록시 객체의 메서드가 아니라, 원래 본체 메서드만이므로, 실행메서드에는 하나의 스레드만 접근 가능하지만, @@Transactional 로 인해 프록시 객체 속 메서드가 실행되므로 endTransaction( ); 가 실행되기 전에 새로운 스레드가 접근할 수 있다.
+  - 그러나, synchronized 가 붙어있는건 프록시 객체의 메서드가 아니라, 원래 본체 메서드만이므로, 실행메서드에는 하나의 스레드만 접근 가능하지만, @Transactional 로 인해 프록시 객체 속 메서드가 실행되므로 endTransaction( ); 가 실행되기 전에 새로운 스레드가 접근할 수 있다.
   
   - 그래서 동시성 이슈가 해결되지 않는다.
   
