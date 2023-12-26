@@ -140,15 +140,15 @@ mermaid: true
  
  - **@Transactional 과 AOP의 동작**
  
-	- 1. target에 대한 호출이 들어오면 AOP proxy가 이를 가로채서(intercept) 가져온다.
+	- 1번 : target에 대한 호출이 들어오면 AOP proxy가 이를 가로채서(intercept) 가져온다.
 	
-	- 2. AOP proxy에서 Transaction Advisor가 commit 또는 rollback 등의 트랜잭션 처리를 한다.
+	- 2번 : AOP proxy에서 Transaction Advisor가 commit 또는 rollback 등의 트랜잭션 처리를 한다.
 	
-	- 3. 트랜잭션 처리 외에 다른 부가 기능이 있을 경우 해당 Custom Advisor에서 그 처리를 한다.
+	- 3번 : 트랜잭션 처리 외에 다른 부가 기능이 있을 경우 해당 Custom Advisor에서 그 처리를 한다.
 	
-	- 4. 각 Advisor에서 부가 기능 처리를 마치면 Target Method를 수행한다.
+	- 4번 : 각 Advisor에서 부가 기능 처리를 마치면 Target Method를 수행한다.
 	
-	- 5. interceptor chain을 따라 caller에게 결과를 다시 전달한다.
+	- 5번 : interceptor chain을 따라 caller에게 결과를 다시 전달한다.
 	
  <br>
  
