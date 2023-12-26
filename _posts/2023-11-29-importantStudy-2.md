@@ -300,6 +300,42 @@ mermaid: true
 	- 아래는 비관적 락을 적용한 코드이다
 	
 	```java
+	@Entity
+	public class Stock {
+
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private Long productId;
+
+		private Long quantity;
+
+		public Stock() {
+
+		}
+
+		public Stock(Long productId, Long quantity) {
+			this.productId = productId;
+			this.quantity = quantity;
+		}
+
+		public Long getQuantity() {
+			return quantity;
+		}
+
+		public void decrease(Long quantity) {
+			if (this.quantity - quantity < 0) {
+				throw new RuntimeException("재고는 0개 미만이 될 수 없습니다.");
+			}
+
+			this.quantity -= quantity;
+		}
+
+	}
+	```
+	
+	```java
 	@Service
 	public class PessimisticLockStockService {
 
@@ -344,6 +380,45 @@ mermaid: true
 	- 읽기가 잦아 성능적으로 중요할 때 사용하며, 어쩌다 한 번씩 일어날 충돌을 대비해야 하는 로직에 사용하는게 좋다.
  
 	- 아래는 낙관적 락을 적용한 예시 코드이다.
+	
+	```java
+	@Entity
+	public class Stock {
+
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+
+		private Long productId;
+
+		private Long quantity;
+
+		@Version // 낙관적 락을 위해 version 추가
+		private Long version;
+
+		public Stock() {
+
+		}
+
+		public Stock(Long productId, Long quantity) {
+			this.productId = productId;
+			this.quantity = quantity;
+		}
+
+		public Long getQuantity() {
+			return quantity;
+		}
+
+		public void decrease(Long quantity) {
+			if (this.quantity - quantity < 0) {
+				throw new RuntimeException("재고는 0개 미만이 될 수 없습니다.");
+			}
+
+			this.quantity -= quantity;
+		}
+
+	}
+	```
 	
 	```java
 	@Service
@@ -395,6 +470,28 @@ mermaid: true
 		@Query("select s from Stock s where s.id = :id")
 		Stock findByIdWithOptimisticLock(Long id);
 	}
+	```
+ 
+
+<br>
+ 
+ - **유저 락 ( User Lock / Named Lock / 분산 락 )**
+	- 유저락은 분산락이라고도 한다.
+	
+	- 분산락은 로직, API 등과 같은 자원에 접근하려는 대상에 대해 락을 건다. ( 비관락은 레코드에 걸었다. )
+	
+	- 네임드락은 MySQL에서 지원해주는 분산락 방식이다.
+	
+	- 비관적락이나 낙관적락으로 성능제어가 어려울 경우, 그리고 DB가 분산된 DB일 경우에 사용한다. DB가 분산되어있으면 비관적, 낙관적 락으로는 해결할 수 없기 때문이다.
+	
+	- 분산 DB를 사용하지만, 굳이 레디스를 쓸만큼 트래픽이 많지 않거나, 비용적 여유가 적은 경우에 사용하는 방법이며, 트래픽이 너무 많아서 성능 이슈가 발생하거나 비용적 여유가 많은 경우에는 Redis의 분산락을 활용하는 것이 좋다.
+	
+	- 트래픽이 너무 많으면.. 네임드 락은 일시적인 락에 대한 정보가 DB에 저장되고, 락을 획득하고 제거하는 쿼리가 매번 발생하는 방식이기 때문에 DB에 불필요한 부하를 줄 수 있다.
+ 
+	- 다음은 유저락을 거는 예시이다.
+	
+	```java
+	
 	```
  
 <br>
