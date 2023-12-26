@@ -488,11 +488,191 @@ mermaid: true
 	
 	- 트래픽이 너무 많으면.. 네임드 락은 일시적인 락에 대한 정보가 DB에 저장되고, 락을 획득하고 제거하는 쿼리가 매번 발생하는 방식이기 때문에 DB에 불필요한 부하를 줄 수 있다.
  
+	- 구현을 할 때 부모 트랜잭션과 다른 물리적 트랜잭션 범위를 지정해주어야 한다.
+ 
 	- 다음은 유저락을 거는 예시이다.
 	
 	```java
-	
+	/**
+     * 부모의 Transactional 과 별도로 실행되어야 하기 때문에 Propagation 을 설정해 줌.
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void decreaseNamedLock(Long id, Long quantity) {
+        Stock stock = stockRepository.findById(id).orElseThrow();
+        stock.decrease(quantity);
+
+        stockRepository.saveAndFlush(stock);
+    }
 	```
+	
+	```java
+	@Component
+	public class NamedLockStockFacade {
+
+		private final LockRepository lockRepository;
+
+		private final StockService stockService;
+
+		public NamedLockStockFacade(LockRepository lockRepository, StockService stockService) {
+			this.lockRepository = lockRepository;
+			this.stockService = stockService;
+		}
+
+		@Transactional
+		public void decrease(Long id, Long quantity) {
+			try {
+				lockRepository.getLock(id.toString());
+				stockService.decreaseNamedLock(id, quantity);
+			} finally {
+				lockRepository.releaseLock(id.toString());
+			}
+		}
+
+	}
+	```
+	
+	```java
+	public interface LockRepository extends JpaRepository<Stock, Long> {
+
+		@Query(value = "select get_lock(:key, 3000)", nativeQuery = true)
+		void getLock(String key);
+
+		@Query(value = "select release_lock(:key)", nativeQuery = true)
+		void releaseLock(String key);
+
+	}
+	```
+
+ <br>
+ <br>
+ 
+### Redis 를 이용한 분산락
+- 일단 레디스의 분산락은 Key 값으로 Redis에 Lock 획득을 시도하는 방식이다.
+
+- **Lettuce**
+	- 스핀 락 형태로 구현하므로 레디스에 부하를 줄 수 있다. 그래서 Thread sleep 을 활용하여 부하를 줄여야 한다.
+	
+	- 스핀 락 : 특정 조건이 충족 될 때까지 계속해서 루프를 돌며 기다리는 방식
+	
+	- 직접 스핀 락 형태로 구현을 해야하고, Thread sleep 으로 인해 연속적인 락 해제/획득이 되지 않아 비효율적일 수 있다.
+	
+	- 한 스레드가 Lock 획득 후 오류로 인해 UnLock 에 실패하면, 다른 스레드들은 Lock을 획득하지 못해 무한 대기상태에 빠질 수 있으므로, 이를 해결할 로직을 추가로 생각해주어야 한다.
+	
+	- Lettuce 를 활용한 예시 코드이다.
+	
+	```java
+	/**
+	 * Lettuce 를 활용하여 분산 락을 구현하는 장점은, DB의 Named Lock에 비해 구현이 쉽다가 있다.
+	 * 그러나 단점은 스핀 락 방식이므로, 레디스에 부하를 줄 수 있다.
+	 * 그래서 Thread sleep 을 통해 요청 텀을 두어야 한다.
+	 *  - 스핀 락 방식 : 특정 조건이 충족 될 때까지 계속해서 루프를 돌며 기다리는 방식
+	 */
+	@Component
+	public class LettuceLockStockFacade {
+
+		private final RedisLockRepository redisLockRepository;
+		private final StockService stockService;
+
+		public LettuceLockStockFacade(RedisLockRepository redisLockRepository, StockService stockService) {
+			this.redisLockRepository = redisLockRepository;
+			this.stockService = stockService;
+		}
+
+		public void decrease(Long id, Long quantity) throws InterruptedException {
+			while ( !redisLockRepository.lock(id) ) {
+				Thread.sleep(100);
+			}
+			try {
+				stockService.decrease(id, quantity);
+			} finally {
+				redisLockRepository.unlock(id);
+			}
+		}
+	}
+	```
+	
+	```java
+	@Repository
+	public class RedisLockRepository {
+
+		private RedisTemplate<String, String> redisTemplate;
+
+		public RedisLockRepository(RedisTemplate<String, String> redisTemplate) {
+			this.redisTemplate = redisTemplate;
+		}
+
+		public Boolean lock(Long key) {
+			return redisTemplate
+					.opsForValue()
+					.setIfAbsent(generateKey(key), "lock", Duration.ofMillis(3_000));
+		}
+
+		public void unlock(Long key) {
+			redisTemplate.delete(generateKey(key));
+		}
+
+		private String generateKey(Long key) {
+			return key.toString();
+		}
+
+	}
+	```
+	
+<br>
+
+- **Redisson**
+	- pub sub 방식으로 이루어져있어서 연속적인 락 해제/획득이 가능하다.
+
+	- 자체 구현된 TimeOut이 있기 때문에, 하나의 락이 최대 점유할 수 있는 시간을 설정할 수 있다. 
+	
+	- 그래서 Lettuce처럼 무한 대기 상태에 대한 예외코드를 직접 작성하지 않아도 된다.
+	
+	- Lettuce 보다 성능이 좋지만, 라이브러리에 의존적이라는 단점이 있다.
+	
+	- 보통은 Redisson 을 많이 이용한다.
+	
+	- 다음은 Redisson 을 활용한 예시 코드이다.
+	
+	```java
+	/**
+	 * Redisson 은 pubsub 기반이기 때문에 레디스의 과부하를 줄일 수 있다.
+	 * 대신 구현에 별도 로직이 들어간다는 것과, Redisson 이라는 라이브러리를 사용해야하는 부담이 있다.
+	 */
+	@Component
+	public class RedissonLockStockFacade {
+
+		private RedissonClient redissonClient;
+		private StockService stockService;
+
+		public RedissonLockStockFacade(RedissonClient redissonClient, StockService stockService) {
+			this.redissonClient = redissonClient;
+			this.stockService = stockService;
+		}
+
+		public void decrease(Long id, Long quantity) throws InterruptedException {
+			RLock lock = redissonClient.getLock(id.toString());
+
+			try {
+				boolean available = lock.tryLock(10, 1, TimeUnit.SECONDS);
+
+				if (!available) {
+					System.out.println("lock 획득 실패");
+					return;
+				}
+
+				stockService.decrease(id, quantity);
+
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			} finally {
+				lock.unlock();
+			}
+
+		}
+
+	}
+	```
+	
  
 <br>
 <br>
