@@ -1,5 +1,5 @@
 ---
-title: Important Study - Concurrency issues And Lock
+title: Important Study - DB index to improve performance
 author: Daehong
 date: 2023-11-29
 category: Jekyll
