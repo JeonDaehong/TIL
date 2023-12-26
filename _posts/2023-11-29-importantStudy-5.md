@@ -294,7 +294,7 @@ mermaid: true
 		
 		- 새로운 레코드까지는 막을 수 없으므로, B Transaction 에는 역시 값이 다르게 들어옴.
  
- 	- @Transactional(isolation = Isolation.REPEATABLE_READ) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
+	- @Transactional(isolation = Isolation.REPEATABLE_READ) 를 사용함으로 해당 메서드의 트랜잭션을 설정 할 수 있다.
  
  
  <br>
