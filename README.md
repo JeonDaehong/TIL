@@ -81,6 +81,7 @@ permalink: /
 - #### [Daemon Thread](/_posts/2023-11-29-java-29.md)
 - #### [IO & NIO ( Blocking vs Non-Blocking )](/_posts/2023-11-29-java-30.md)
 - #### [JSP & Servlet](/_posts/2023-11-29-java-31.md)
+- #### [JDBC & Connection Pool](/_posts/2023-11-29-java-32.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
@@ -103,6 +104,7 @@ permalink: /
 - #### [GET, POST, PUT, PATCH, DELETE](/_posts/2023-11-29-web-1.md)
 - #### [URL vs URI](/_posts/2023-11-29-web-2.md)
 - #### [API vs RestAPI](/_posts/2023-11-29-web-3.md)
+- #### [Cookie vs Session](/_posts/2023-11-29-web-5.md)
 
 <br>
 
@@ -132,6 +134,7 @@ permalink: /
 - #### [Lock](/_posts/2023-11-29-tip-1.md)
 - #### [Iamge Upload](/_posts/2023-11-29-tip-2.md)
 - #### [When modifying a session in a hurry](/_posts/2023-11-29-tip-3.md)
+- #### [How to prepare for high volume traffic](/_posts/2023-11-29-tip-4.md)
 
 
 <br>
