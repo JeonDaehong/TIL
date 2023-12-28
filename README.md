@@ -17,6 +17,10 @@ permalink: /
 
 <br>
 
+ ![테스트 이미지](/_posts/img/Integration_Testing.png)
+
+<br>
+
 ## TIL List
 
 ### Very Important Study Content
