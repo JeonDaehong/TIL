@@ -17,10 +17,6 @@ permalink: /
 
 <br>
 
- ![테스트 이미지](/_posts/img/Integration_Testing.png)
-
-<br>
-
 ## TIL List
 
 ### Very Important Study Content
@@ -48,6 +44,7 @@ permalink: /
 - #### [Shortest Distance ( DFS, BFS )](/_posts/2023-11-29-algorithm-16.md)
 - #### [Route Navigation ( Graph, DFS )](/_posts/2023-11-29-algorithm-17.md)
 - #### [Route Navigation2 ( Graph List, DFS )](/_posts/2023-11-29-algorithm-18.md)
+- #### [Graph Shortest Distance ( Graph / BFS )](/_posts/2023-11-29-algorithm-19.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Etc Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Etc Tip](/_posts/2023-11-29-algorithm-3.md)

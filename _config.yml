@@ -37,7 +37,7 @@ kramdown:
 
 syntax_highlighter_style: colorful
 
-markdown_ext:             markdown,mkdown,mkdn,mkd,md,png
+markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
 permalink:                /:categories/:year-:month-:day-:title:output_ext
