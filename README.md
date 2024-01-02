@@ -25,6 +25,7 @@ permalink: /
 - #### [DB index to improve performance](/_posts/2023-11-29-importantStudy-3.md)
 - #### [Redis Cache & Update Strategy](/_posts/2023-11-29-importantStudy-4.md)
 - #### [Very Important Transaction](/_posts/2023-11-29-importantStudy-5.md)
+- #### [DB Lock](/_posts/2023-11-29-importantStudy-6.md)
 
 <br>
 
@@ -138,6 +139,7 @@ permalink: /
 - #### [Early Return Pattern](/_posts/2023-11-29-cs-1.md)
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 - #### [Layered Architecture](/_posts/2023-11-29-cs-10.md)
+- #### [UML Basic](/_posts/2023-11-29-cs-11.md)
 
 
 <br>
