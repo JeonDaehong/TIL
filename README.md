@@ -48,8 +48,10 @@ permalink: /
 - #### [Find Subsets Same Sum ( DFS )](/_posts/2023-11-29-algorithm-20.md)
 - #### [Baduki Riding ( DFS )](/_posts/2023-11-29-algorithm-21.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
-- #### [String CodingTest Etc Tip](/_posts/2023-11-29-algorithm-2.md)
-- #### [Array CodingTest Etc Tip](/_posts/2023-11-29-algorithm-3.md)
+- #### [String CodingTest Tip](/_posts/2023-11-29-algorithm-2.md)
+- #### [Array CodingTest Tip](/_posts/2023-11-29-algorithm-3.md)
+- #### [Hash CodingTest Tip](/_posts/2023-11-29-algorithm-22.md)
+- #### [ETC CodingTest Tip](/_posts/2023-11-29-algorithm-23.md)
 
 <br>
 
