@@ -49,11 +49,13 @@ permalink: /
 - #### [Baduki Riding ( DFS )](/_posts/2023-11-29-algorithm-21.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
+- #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
 - #### [Sum Of Consecutive Natural Numbers](/_posts/2023-11-29-algorithm-26.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [String CodingTest Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Tip](/_posts/2023-11-29-algorithm-3.md)
 - #### [Hash CodingTest Tip](/_posts/2023-11-29-algorithm-22.md)
+- #### [Stack and Queue CodingTest Tip](/_posts/2023-11-29-algorithm-27.md)
 - #### [ETC CodingTest Tip](/_posts/2023-11-29-algorithm-23.md)
 
 <br>
