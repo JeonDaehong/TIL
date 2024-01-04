@@ -49,6 +49,7 @@ permalink: /
 - #### [Find Subsets Same Sum ( DFS )](/_posts/2023-11-29-algorithm-20.md)
 - #### [Baduki Riding ( DFS )](/_posts/2023-11-29-algorithm-21.md)
 - #### [Maximum Score ( DFS )](/_posts/2023-11-29-algorithm-29.md)
+- #### [Finding Duplicate Permutations ( DFS )](/_posts/2023-11-29-algorithm-30.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
