@@ -154,7 +154,8 @@ permalink: /
 - #### [Iamge Upload](/_posts/2023-11-29-tip-2.md)
 - #### [When modifying a session in a hurry](/_posts/2023-11-29-tip-3.md)
 - #### [How to prepare for high volume traffic](/_posts/2023-11-29-tip-4.md)
-
+- #### [Transactional(readOnly = true)](/_posts/2023-11-29-tip-5.md)
+- #### [Why you should avoid NoArgsConstructor and AllArgsConstructor](/_posts/2023-11-29-tip-6.md)
 
 <br>
 <br>
