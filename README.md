@@ -52,6 +52,7 @@ permalink: /
 - #### [Finding Duplicate Permutations ( DFS )](/_posts/2023-11-29-algorithm-30.md)
 - #### [Coin Exchange ( DFS )](/_posts/2023-11-29-algorithm-31.md)
 - #### [Number of Combinations Memoization ( DFS )](/_posts/2023-11-29-algorithm-32.md)
+- #### [Finding Permutations ( DFS )](/_posts/2023-11-29-algorithm-33.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
