@@ -114,6 +114,7 @@ permalink: /
 - #### [Quilifier vs Primary](/_posts/2023-11-29-spring-6.md)
 - #### [POJO](/_posts/2023-11-29-spring-8.md)
 - #### [Filter vs Interceptor](/_posts/2023-11-29-spring-9.md)
+- #### [DTO vs VO vs Entity](/_posts/2023-11-29-spring-10.md)
 - #### [Spring Etc Study](/_posts/2023-11-29-spring-4.md)
 
 
