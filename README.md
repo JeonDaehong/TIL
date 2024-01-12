@@ -55,6 +55,7 @@ permalink: /
 - #### [Finding Permutations ( DFS )](/_posts/2023-11-29-algorithm-33.md)
 - #### [Guess Sequence ( DFS )](/_posts/2023-11-29-algorithm-34.md)
 - #### [Finding Combinations ( DFS )](/_posts/2023-11-29-algorithm-35.md)
+- #### [Maze Navigation ( DFS )](/_posts/2023-11-29-algorithm-36.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
