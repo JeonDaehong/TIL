@@ -142,6 +142,7 @@ permalink: /
 - #### [Finding Combinations ( DFS )](/_posts/2023-11-29-algorithm-35.md)
 - #### [Maze Navigation ( DFS )](/_posts/2023-11-29-algorithm-36.md)
 - #### [Maze Navigation ( BFS )](/_posts/2023-11-29-algorithm-37.md)
+- #### [Tomato ( BFS )](/_posts/2023-11-29-algorithm-38.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
