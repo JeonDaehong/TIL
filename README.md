@@ -112,6 +112,7 @@ permalink: /
 - #### [Singleton Pattern](/_posts/2023-11-29-cs-2.md)
 - #### [Layered Architecture](/_posts/2023-11-29-cs-10.md)
 - #### [UML Basic](/_posts/2023-11-29-cs-11.md)
+- #### [Design Pattern Basic](/_posts/2023-11-29-cs-13.md)
 
 <br>
 
