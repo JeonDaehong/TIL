@@ -62,6 +62,7 @@ permalink: /
 - #### [JSP & Servlet](/_posts/2023-11-29-java-31.md)
 - #### [JDBC & Connection Pool](/_posts/2023-11-29-java-32.md)
 - #### [JVM Stack and Stack Frame](/_posts/2023-11-29-java-33.md)
+- #### [Blocking IO, Non Blocking IO, Sync, Async](/_posts/2023-11-29-java-34.md)
 - #### [Java Etc Study](/_posts/2023-11-29-java-17.md)
 
 
