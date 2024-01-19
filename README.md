@@ -148,6 +148,7 @@ permalink: /
 - #### [Island ( DFS )](/_posts/2023-11-29-algorithm-39.md)
 - #### [Island ( BFS )](/_posts/2023-11-29-algorithm-40.md)
 - #### [Pizza Delivery Distance ( DFS )](/_posts/2023-11-29-algorithm-41.md)
+- #### [Wrestler ( Greedy )](/_posts/2023-11-29-algorithm-42.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
