@@ -150,6 +150,7 @@ permalink: /
 - #### [Pizza Delivery Distance ( DFS )](/_posts/2023-11-29-algorithm-42.md)
 - #### [Wrestler ( Greedy )](/_posts/2023-11-29-algorithm-41.md)
 - #### [MeetingRoom Assignment ( Greedy )](/_posts/2023-11-29-algorithm-43.md)
+- #### [Wedding Ceremony ( Greedy )](/_posts/2023-11-29-algorithm-44.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
