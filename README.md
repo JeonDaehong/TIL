@@ -158,6 +158,7 @@ permalink: /
 - #### [Sum Of Consecutive Natural Numbers](/_posts/2023-11-29-algorithm-26.md)
 - #### [Sieve of Eratosthenes](/_posts/2023-11-29-algorithm-1.md)
 - #### [Dijkstra Algorithm](/_posts/2023-11-29-algorithm-46.md)
+- #### [Union & Find](/_posts/2023-11-29-algorithm-47.md)
 - #### [String CodingTest Tip](/_posts/2023-11-29-algorithm-2.md)
 - #### [Array CodingTest Tip](/_posts/2023-11-29-algorithm-3.md)
 - #### [Hash CodingTest Tip](/_posts/2023-11-29-algorithm-22.md)
