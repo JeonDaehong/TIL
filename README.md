@@ -153,6 +153,7 @@ permalink: /
 - #### [Wedding Ceremony ( Greedy )](/_posts/2023-11-29-algorithm-44.md)
 - #### [Maximum Earnings Schedule ( Greedy )](/_posts/2023-11-29-algorithm-45.md)
 - #### [Wonderland ( Union&Find )](/_posts/2023-11-29-algorithm-48.md)
+- #### [Wonderland ( Prim Algorithm )](/_posts/2023-11-29-algorithm-49.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
