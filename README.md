@@ -158,6 +158,7 @@ permalink: /
 - #### [Cross Stone Bridge](/_posts/2023-11-29-algorithm-51.md)
 - #### [Maximum Partially Increasing Sequence](/_posts/2023-11-29-algorithm-52.md)
 - #### [Build Tallest Tower](/_posts/2023-11-29-algorithm-53.md)
+- #### [Maximum Score(Knapsack Algorithm)](/_posts/2023-11-29-algorithm-55.md)
 - #### [Two Pointers Algorithm](/_posts/2023-11-29-algorithm-24.md)
 - #### [Sliding Window](/_posts/2023-11-29-algorithm-25.md)
 - #### [Sort Algorithm](/_posts/2023-11-29-algorithm-28.md)
