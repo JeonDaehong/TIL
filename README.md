@@ -29,6 +29,12 @@ permalink: /
 
 <br>
 
+### Big-Data
+- #### [ETL vs CDC](/_posts/2023-11-29-bigdata-1.md)
+
+
+<br>
+
 ### Java
 - #### [Java Basic JDK, JRE, JVM & JVM WarmUp](/_posts/2023-11-29-java-16.md)
 - #### [Java Version](/_posts/2023-11-29-java-25.md)
