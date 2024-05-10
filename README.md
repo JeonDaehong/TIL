@@ -195,6 +195,11 @@ permalink: /
 - #### [High Availability (HA)](/_posts/2023-11-29-etc-1.md)
 - #### [Directed Acyclic Graph (DAG)](/_posts/2023-11-29-etc-2.md)
 
+<br>
+
+### Development BOOK
+- #### [Computer structure and operating system for self-study](/_posts/2023-11-29-book-1.md)
+
 
 <br>
 <br>
